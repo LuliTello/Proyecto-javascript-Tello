@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito+Sans&display=swap" rel="stylesheet" />
+    <title>Transporte express BulletTrain</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style.css" />
+
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand m-0" href="./index.html">BulletTrain</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav small fw-bold ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#servicios">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contactenos">Contáctenos</a>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-outline-dark">Login</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="inicio">
+            <h1 class="inicio__titulo">Conozca Argentina viajando rapido y seguro</h1>
+        </section>
+
+        <section class="formulario">
+            <form class="form container" action="" method="" enctype="">
+                <div class="row">
+                    <div>
+                        <label for="ida-vuelta">Ida y vuelta</label>
+                        <input type="radio" id="ida-vuelta" name="trayecto">
+                        <label for="ida-vuelta">Ida</label>
+                        <input type="radio" id="ida" name="trayecto">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <label for="origen">Origen</label>
+                        <select name="origen" id="origen">
+                            <option value="origen">Origen</option>
+                            <option value="buenos-aires">Buenos Aires</option>
+                            <option value="Cordoba">Cordoba</option>
+                            <option value="Santa Fe">Santa Fe</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2  col-md-3 col-sm-6">
+                        <label for="destino">Destino</label>
+                        <select name="destino" id="destino">
+                            <option value="destino">Destino</option>
+                            <option value="buenos-aires">Buenos Aires</option>
+                            <option value="Cordoba">Cordoba</option>
+                            <option value="Santa Fe">Santa Fe</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2  col-md-3 col-sm-6">
+                        <label for="fecha">Partida</label>
+                        <input type="date" name="partida" id="partida">
+                    </div>
+                    <div class="col-lg-2  col-md-3 col-sm-6">
+                        <label for="fecha">Regreso</label>
+                        <input type="date" name="regreso" id="regreso">
+                    </div>
+
+                    <div class="col-lg-2  col-md-3 col-sm-6">
+                        <label for="pasajero">Tipo de Pasajero</label>
+                        <select name="pasajero" id="pasajero">
+                            <option value="pasajero">Pasajeros</option>
+                            <option value="Adultos">Adultos</option>
+                            <option value="Adultos">Menores</option>
+                            <option value="Adultos">Jubilados</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2  col-md-3 col-sm-6">
+                        <label for="number">Cantidad</label>
+                        <input type="number" name="number" id="number">
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn btn-primary">Comprar pasaje</button>
+            </form>
+        </section>
+        <section class="servicios" id="servicios">
+            <h2>servicios y tarifas</h2>
+            <div class="card__servicios">
+                <h3>Conozca y elija su servicio</h3>
+                <div class="card__flex">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./assets/tren-movimiento.jpg" class="card-img-top" alt="tren moviendose">
+                        <div class="card-body">
+                            <h4 class="card-title">Buenos Aires - Cordoba</h4>
+                            <p class="card-text">Ida y vuelta Bs.As-Cba, 2,5 horas por tramo.</p>
+                            <h5>ARS 7000 <span>/persona</span></h5>
+                            <a href="#" class="card-link">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="./assets/tren-por-salir.jpg" class="card-img-top" alt="tren por salir">
+                        <div class="card-body">
+                            <h4 class="card-title">Buenos Aires - Santa Fe</h4>
+                            <p class="card-text">Ida y vuelta Bs.As-Sta Fe, 1,5 horas por tramo.</p>
+                            <h5>ARS 5500 <span>/persona</span></h5>
+                            <a href="#" class="card-link">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="terminos">* Terminos y condiciones</h6>
+                <p class="terminos__texto">Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.</p>
+                <p class="terminos__texto">Jubilados 15% de descuento.</p>
+                <p class="terminos__texto">La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano. </p>
+            </div>
+        </section>
+        <section class="contactenos" id="contactenos">
+            <h2>Contactenos y reciba nuestras promociones</h2>
+
+            <form class="form" action="" method="" enctype="">
+                <div class="form__grid">
+                    <div>
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <input class="form__grid--input" type="text" id="nombre" name="nombre" placeholder="Nombre y apellido">
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono:</label>
+                        <input  class="form__grid--input"type="text" name="telefono" id="telefono" placeholder="Telefono">
+                    </div>
+                    <div>
+                        <label for="consulta">Deje su consulta o reclamo</label>
+                        <textarea name="consulta" id="consulta" cols="35" rows="15"
+                            placeholder="Deje su consulta"></textarea>
+                    </div>
+                    <div>
+                        <label for="promocion">QUIERO RECIBIR PROMOCIONES</label>
+                        <input type="checkbox" id="promocion">
+                    </div>
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+                </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">Bullettrain</p>
+        <p class="footer__text">Copyright &copy; 2022. All rights reserved</p>
+        <div class="footer__icons">
+            <a href="https://es-la.facebook.com/" class="text-black fs-2 text-decoration-none">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://instagram.com" class="text-black fs-2 text-decoration-none">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/home" class="text-black fs-2 text-decoration-none">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
