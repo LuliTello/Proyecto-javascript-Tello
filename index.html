@@ -38,24 +38,25 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-outline-dark">Login</button>
+                <button type="button" class="btn btn-outline-dark">Registarse</button>
             </div>
         </nav>
     </header>
     <main>
         <section class="inicio">
-            <h1 class="inicio__titulo">Conozca Argentina viajando rapido y seguro</h1>
+            <h1 class="inicio__titulo">Viaje rápido, cómodo y seguro</h1>
         </section>
 
         <section class="formulario">
             <form class="form container" action="" method="" enctype="">
                 <div class="row">
-                    <div>
+                    <div class="radio">
                         <label for="ida-vuelta">Ida y vuelta</label>
-                        <input type="radio" id="ida-vuelta" name="trayecto">
+                        <input type="radio" id="ida-vuelta" name="trayecto" class="radio__button">
                         <label for="ida-vuelta">Ida</label>
-                        <input type="radio" id="ida" name="trayecto">
+                        <input type="radio" id="ida" name="trayecto" class="radio__button">
                     </div>
+                    <!--<div class="extra">-->
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <label for="origen">Origen</label>
                         <select name="origen" id="origen">
@@ -99,8 +100,8 @@
                     </div>
 
                 </div>
-
-                <button type="button" class="btn btn-primary">Comprar pasaje</button>
+                </div>
+                <button type="button" class="btn btn-comprar">Comprar pasaje</button>
             </form>
         </section>
         <section class="servicios" id="servicios">
@@ -141,7 +142,8 @@
                 <div class="form__grid">
                     <div>
                         <label for="nombre">Nombre y Apellido:</label>
-                        <input class="form__grid--input" type="text" id="nombre" name="nombre" placeholder="Nombre y apellido">
+                        <input class="form__grid--input" type="text" id="nombre" name="nombre"
+                            placeholder="Nombre y apellido">
                     </div>
                     <div>
                         <label for="email">Email:</label>
@@ -149,7 +151,8 @@
                     </div>
                     <div>
                         <label for="telefono">Teléfono:</label>
-                        <input  class="form__grid--input"type="text" name="telefono" id="telefono" placeholder="Telefono">
+                        <input class="form__grid--input" type="text" name="telefono" id="telefono"
+                            placeholder="Telefono">
                     </div>
                     <div>
                         <label for="consulta">Deje su consulta o reclamo</label>
@@ -162,10 +165,10 @@
                     </div>
                     <button type="submit" class="btn btn-success">Enviar</button>
                 </div>
-                </section>
+        </section>
     </main>
     <footer class="footer">
-        <p class="footer__text">Bullettrain</p>
+        <p class="footer__title">Bullettrain</p>
         <p class="footer__text">Copyright &copy; 2022. All rights reserved</p>
         <div class="footer__icons">
             <a href="https://es-la.facebook.com/" class="text-black fs-2 text-decoration-none">
@@ -182,6 +185,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

@@ -11,11 +11,12 @@ body{
     background-image: linear-gradient(to right, rgb(156, 19, 138), rgb(250, 129, 250));
 } 
 .navbar-brand{
+    color: white;
     font-weight: bold;
     font-style: italic;
 }  
 .inicio{
-    background-image: url(./assets/tren-movimiento2.jpg);
+    background-image: url(./assets/persona-estacion.jpg);
     height: 25rem;
     width: 100%;
     background-size: cover;
@@ -28,15 +29,15 @@ body{
     font-size: 2.5rem;
     position: absolute;
     font-weight: bold;
-    color: black;
+    color:orange;
     top: 18rem;
-    left: 10rem;
+    left: 24rem;
 }
 
 /*formulario*/
 
 .form{
-    background-color: beige;
+    background-color: rgb(235, 229, 229);
     margin: 1rem auto;
     padding: 1rem;   
 }
@@ -52,9 +53,10 @@ label{
     margin: 0.5rem 0;
 }
 
-button{
-    margin: 1rem;
-    
+.btn-comprar{
+    margin: 1rem auto; 
+    background-color: rgb(250, 129, 250); 
+    color: black; 
 }
 h2{
     font-size: 1.5rem;
@@ -126,7 +128,60 @@ textarea{
     align-items: center;
     padding-top: 1rem;
 }
+.footer__title{
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+}
 .footer__text{
     font-weight: bold;
+}
+
+/*mobile last*/
+@media(max-width:768px){
+    .nav-link{
+        text-align: center;
+    }
+    
+    .inicio__titulo{
+        font-size: 2rem;
+    }
+   /*.extra{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+   }*/
+    .btn-comprar{
+        margin-left: 16rem;
+    }
+}
+@media(max-width:480px){
+    .inicio__titulo{
+        font-size: 1.5rem;
+        left: 10rem;
+    }
+    .radio{
+        display: flex;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+    .radio__button{
+       height: 1.5rem;
+    }
+    /*.extra{
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 1rem;
+    }*/
+    
+    .btn-comprar{
+        margin-left: 7rem;
+    }
+    .card__flex{
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    .footer{
+        flex-direction: column;
+    }
 }
 
