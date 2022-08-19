@@ -28,7 +28,7 @@ if(( pasajero == 'Adulto' || pasajero == 'adulto' || pasajero == 'ADULTO') && (d
 
 //BUCLE
 
-/*let destino1 = 'cordoba';
+let destino1 = 'cordoba';
 let destino2 = 'santa fe';
 let destino3 = 'buenos aires';
 let compraPasaje = prompt('escriba en minusculas a donde quiere ir');
@@ -36,9 +36,9 @@ let compraPasaje = prompt('escriba en minusculas a donde quiere ir');
 while(compraPasaje !== destino1 && compraPasaje !== destino2 && compraPasaje !== destino3){
     alert('Usted no puede comprar su pasaje');
     compraPasaje = prompt('escriba en minusculas a donde quiere ir');
-}*/
+}
 
-//otro bucle con while
+/*//otro bucle con while
 let ingresar = false;
 let usuario = 'lucia';
 let contraseña = 'contraseña';
@@ -56,4 +56,7 @@ while(contador < 3 && ingresar === false){
 }
 if (contador == 3 || !ingresar){
 alert('usted supero los intentos para ingresar usuario y contraseña');
-}
+}*/
+
+
+
