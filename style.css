@@ -1,3 +1,4 @@
+/*Globales*/
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@
 body{
     font-family: 'Nunito Sans', sans-serif;
 }
+/*header y nav*/
 .header,.footer{
     background-image: linear-gradient(to right, rgb(156, 19, 138), rgb(250, 129, 250));
 } 
@@ -15,6 +17,7 @@ body{
     font-weight: bold;
     font-style: italic;
 }  
+/*imagen inicio*/
 .inicio{
     background-image: url(./assets/persona-estacion.jpg);
     height: 25rem;
@@ -58,6 +61,7 @@ label{
     background-color: rgb(250, 129, 250); 
     color: black; 
 }
+/*servicios*/
 h2{
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -102,6 +106,7 @@ h6,.terminos__texto{
     font-weight: bold;
     margin-left: 2rem;
 }
+/*contacto*/
 .form__grid{
     display: grid;
     grid-template-columns: 1fr;
@@ -120,7 +125,7 @@ textarea{
     width: 25%;
     margin: 1rem auto;
 }
-
+/*footer*/
 .footer{
     display: flex;
     justify-content: space-around;
@@ -137,7 +142,7 @@ textarea{
     font-weight: bold;
 }
 
-/*mobile last*/
+/*mobile last media queries*/
 @media(max-width:768px){
     .nav-link{
         text-align: center;
@@ -146,10 +151,7 @@ textarea{
     .inicio__titulo{
         font-size: 2rem;
     }
-   /*.extra{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-   }*/
+   
     .btn-comprar{
         margin-left: 16rem;
     }
@@ -167,10 +169,6 @@ textarea{
     .radio__button{
        height: 1.5rem;
     }
-    /*.extra{
-        grid-template-columns: repeat(2, 1fr);
-        margin-left: 1rem;
-    }*/
     
     .btn-comprar{
         margin-left: 7rem;

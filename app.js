@@ -26,17 +26,25 @@ if(( pasajero == 'Adulto' || pasajero == 'adulto' || pasajero == 'ADULTO') && (d
     alert('Error: Ingrese alguna de las opciones');
 }*/
 
-//BUCLE
+// DESAFIO BUCLE
+//While
 
 let destino1 = 'cordoba';
 let destino2 = 'santa fe';
 let destino3 = 'buenos aires';
-let compraPasaje = prompt('escriba en minusculas a donde quiere ir');
+let condition = true;
 
-while(compraPasaje !== destino1 && compraPasaje !== destino2 && compraPasaje !== destino3){
-    alert('Usted no puede comprar su pasaje');
-    compraPasaje = prompt('escriba en minusculas a donde quiere ir');
+while(condition === true){
+    let compraPasaje = prompt('escriba en minusculas a donde quiere viajar');
+    if(compraPasaje === destino1 || compraPasaje === destino2 || compraPasaje === destino3){
+        condition = false;
+        alert('Usted ha reservado su pasaje');
+        
+    } else {
+        alert('el lugar no existe, vuelva a ingresar un destino ')
+    }
 }
+
 
 /*//otro bucle con while
 let ingresar = false;
@@ -55,8 +63,24 @@ while(contador < 3 && ingresar === false){
     contador++;
 }
 if (contador == 3 || !ingresar){
-alert('usted supero los intentos para ingresar usuario y contraseña');
+alert('usted superó los intentos para ingresar usuario y contraseña');
 }*/
 
+//for
+//guerra cartas
 
+/*for ( let i=0; i<=5; i++){
 
+    let cartaJugador1 = parseInt (prompt('Jugador 1 seleccione el valor de una carta'));
+    let cartaJugador2 = parseInt (prompt('Jugador 2 seleccione el valor de una carta'));
+
+    if(cartaJugador1 > cartaJugador2){
+        alert('El jugador 1 ha ganado esta partida')
+
+    } else if (cartaJugador1 == cartaJugador2){
+        alert('es un empate');
+    }else{
+        alert('El jugador 2 ha ganado');
+        
+    }
+}*/
