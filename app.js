@@ -1,86 +1,134 @@
-/* CONDICIONAL
-let pasaje = 7000;
-let pasaje2 = 5500;
-let destino = prompt('Ingrese la opcion de destino Cordoba o Santa Fe');
-let pasajero = prompt('Ingrese tipo de pasajero Adulto niño o jubilado');
+//simulador interactivo
 
-if(( pasajero == 'Adulto' || pasajero == 'adulto' || pasajero == 'ADULTO') && (destino == 'Cordoba' || destino == 'cordoba' || destino == 'CORDOBA')){
-    alert('El costo de su pasajero es de $' + ' ' + pasaje);
+//funcion para dar bienvenida
+function solicitarNombre() {
+    alert('Usted ha ingresado a la plataforma BulletTrain para viajar seguro y rápido');
+    let nombre = prompt('Por favor ingrese su nombre');
+    while (nombre === '') {
+        nombre = prompt('Por favor ingrese su nombre');
+    }
+    //muestro al cliente
+    alert('Hola' + ' ' + nombre + ' ' + 'bienvenido/a!');
+}
+//llamada a la funcion
+solicitarNombre();
 
-} else if (( pasajero == 'Adulto' || pasajero == 'adulto' || pasajero == 'ADULTO') && (destino == 'Santa Fe' || destino == 'santa fe' || destino == 'SANTA FE')){
-    alert('El costo de su pasajero es de $' + ' ' + pasaje2);   
 
-} else if (( pasajero == 'Niño' || pasajero == 'niño' || pasajero == 'NIÑO') && (destino == 'Cordoba' || destino == 'cordoba' || destino == 'CORDOBA')){
-    alert ( 'El costo de su pasajero es de $' + ' ' + (pasaje-pasaje));
+//funcion para comprar pasaje
+//Declaracion variables
+let resultado = 0;
+let precio;
+let calcular = false;
+//funcion compra pasaje segun destino y cantidad
+function calcularPasaje() {
 
-} else if (( pasajero == 'Niño' || pasajero == 'niño' || pasajero == 'NIÑO') && (destino == 'Santa Fe' || destino == 'santa fe' || destino == 'SANTA FE')){
-    alert ( 'El costo de su pasajero es de $' + ' ' + (pasaje2-pasaje2));  
+    while (calcular === false) {
 
-}else if(( pasajero == 'Jubilado' || pasajero == 'jubilado' || pasajero == 'JUBILADO') && (destino == 'Cordoba' || destino == 'cordoba' || destino == 'CORDOBA')){
-    alert('El costo de su pasajero es de $' + ' ' + (pasaje/1.15));
+        let destino = prompt('Elija un destino entre cordoba y santa fe');
+        let cantidad = parseInt(prompt('Ingrese un número de pasajeros'));
 
-}else if(( pasajero == 'Jubilado' || pasajero == 'jubilado' || pasajero == 'JUBILADO') && (destino == 'Santa Fe' || destino == 'santa fe' || destino == 'SANTA FE')){
-    alert('El costo de su pasajero es de $' + ' ' + (pasaje2/1.15));  
+        if (destino === 'cordoba' && !isNaN(cantidad)) {
+            calcular = true;
+            precio = 7000
+            resultado += cantidad * precio;
+            alert('el precio de su pasaje es de: $' + resultado + '' + '+IVA');
+            return resultado;
 
-}else{
-    alert('Error: Ingrese alguna de las opciones');
-}*/
+        } else if (destino === 'santa fe' && !isNaN(cantidad)) {
+            precio = 5500
+            resultado += cantidad * precio;
+            alert('el precio de su pasaje es de: $' + resultado + '' + '+IVA');
+            return resultado;
 
-// DESAFIO BUCLE
-//While
-
-let destino1 = 'cordoba';
-let destino2 = 'santa fe';
-let destino3 = 'buenos aires';
-let condition = true;
-
-while(condition === true){
-    let compraPasaje = prompt('escriba en minusculas a donde quiere viajar');
-    if(compraPasaje === destino1 || compraPasaje === destino2 || compraPasaje === destino3){
-        condition = false;
-        alert('Usted ha reservado su pasaje');
-        
-    } else {
-        alert('el lugar no existe, vuelva a ingresar un destino ')
+        }
     }
 }
+//creacion de variable global y llamada a funcion
+let precioPasaje = calcularPasaje();
 
-
-/*//otro bucle con while
-let ingresar = false;
-let usuario = 'lucia';
-let contraseña = 'contraseña';
-let contador = 0;
-
-
-while(contador < 3 && ingresar === false){
-    let palabraUsuario = prompt('ingrese su usuario');
-    let palabraContraseña = prompt('ingrese su contraseña');
-    if( palabraUsuario === usuario && palabraContraseña === contraseña ){
-        ingresar = true;
-        alert('usted ha ingresado correctamente');
+//funcion descuento por tipo pasajero
+//declaracion de variables
+let pasajero = false;
+//funcion
+function descuentoPasaje() {
+    while (pasajero === false) {
+        let tipoPasajero = parseInt(prompt('Seleccione la opción de tipo de pasajero \n 1-Adulto \n 2-Niño \n 3-Jubilado'));
+    
+        switch (tipoPasajero) {
+        case 1:
+            pasajero = true;
+            precioPasaje = resultado*1;
+            alert('Seleccionaste Adulto, tu pasaje no tiene descuento, el costo es de' + ' ' + '$' + Math.round(precioPasaje)) + '' + '+IVA';
+            return precioPasaje;
+        case 2:
+            precioPasaje = resultado * 0;
+            alert('Seleccionaste Niño, niños viajan gratis, el costo de tu pasaje es de ' + ' ' + '$' + precioPasaje) + '' + '+IVA';
+            return precioPasaje;
+        case 3:
+            precioPasaje = resultado * 0.85;
+            alert('Seleccionaste Jubilado, tu pasaje tiene un 15% de descuento, su costo es de' + ' ' + '$' + Math.round(precioPasaje)) + '' + '+IVA';
+            return Math.round(precioPasaje);
+        default:
+            alert('Seleccionó una opcion no válida');
     }
-    contador++;
 }
-if (contador == 3 || !ingresar){
-alert('usted superó los intentos para ingresar usuario y contraseña');
-}*/
+}
+//llamado de función y creación de variable
+let precioDescuento = descuentoPasaje(precioPasaje);
 
-//for
-//guerra cartas
+//funcion para calcular IVA
+function calcularIva(){
+    alert('El costo de su compra con IVA es de $' + ' ' + Math.round(precioDescuento*1.21))
+    return Math.round(precioDescuento * 1.21);
+}
+//creacion de variable global y llamada a funcion
+let totalPagar = calcularIva(precioDescuento);
 
-/*for ( let i=0; i<=5; i++){
+//función para seleccionar tipo de pago
+//declaración de variables
+let pago = false;
+let cuota;
+//función 
+function seleccionPago() {
+    while (pago === false) {
+        let formaPago = prompt('Elija una forma de pago, debito, transferencia o credito');
 
-    let cartaJugador1 = parseInt (prompt('Jugador 1 seleccione el valor de una carta'));
-    let cartaJugador2 = parseInt (prompt('Jugador 2 seleccione el valor de una carta'));
+        if (formaPago === 'debito' || formaPago === 'transferencia') {
+            pago = true;
+            valorReserva = totalPagar*0.85;
+            alert('Usted ha seleccionado' + ' ' + formaPago + ' ' + ', tiene un 15% de descuento, debe abonar $' + ' ' + Math.round(valorReserva));
+            return Math.round(valorReserva);
+        } else if (formaPago === 'credito') {
 
-    if(cartaJugador1 > cartaJugador2){
-        alert('El jugador 1 ha ganado esta partida')
+            valorReserva = totalPagar;
+            alert('Usted ha seleccionado' + ' ' + formaPago + ' ' + ', debe abonar $' + ' ' + Math.round(valorReserva) + ' ' + 'por favor seleccione número de cuotas');
+            
+            //switch para seleccionar cuotas a pagar y calcular el valor de la cuota
+            let ingreseCuotas = parseInt(prompt('Elija la opción de cuotas que desee  \n 1- 1 cuota sin interés \n 2- 3 cuotas con 25% de interés \n 3- 6 cuotas con 40% de interés'));
+            switch (ingreseCuotas) {
+                case 1:
+                    cuota = 1;
+                    valorCuota = totalPagar/cuota;
+                    alert('Ha seleccionado 1 cuota, el valor de su cuota por mes es de: $ ' + Math.round(valorCuota) + ' ' + 'FINAL');
+                    return Math.round(valorCuota);
+                case 2: 
+                    cuota=3; 
+                    valorCuota = (totalPagar*1.25)/cuota;
+                    alert('Ha seleccionado 3 cuotas, el valor de su cuota por mes es de: $ ' + Math.round(valorCuota) + ' ' + 'FINAL');
+                    return Math.round(valorCuota);
+                case 3:  
+                    cuota = 6;
+                    valorCuota = (totalPagar*1.40)/cuota;
+                    alert('Ha seleccionado 6 cuotas, el valor de su cuota por mes es de: $ ' + Math.round(valorCuota) + ' ' + 'FINAL');
+                    return Math.round(valorCuota);
+                default:
+                    alert('Ingrese una opción válida');
+            }
 
-    } else if (cartaJugador1 == cartaJugador2){
-        alert('es un empate');
-    }else{
-        alert('El jugador 2 ha ganado');
-        
+        }
     }
-}*/
+
+}
+//llamada funcion
+seleccionPago(totalPagar);
+
