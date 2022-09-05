@@ -1,103 +1,131 @@
-//simulador interactivo
+//Segunda entrega complementaria
 
 //funcion para dar bienvenida
-function solicitarNombre() {
+const solicitarNombre = () => {
     alert('Usted ha ingresado a la plataforma BulletTrain para viajar seguro y rápido');
     let nombre = prompt('Por favor ingrese su nombre');
     while (nombre === '' || (!isNaN(nombre))) {
         nombre = prompt('Por favor ingrese su nombre');
     }
     //muestro al cliente
-    alert('Hola' + ' ' + nombre + ' ' + 'bienvenido/a!');
+    alert('Hola' + ' ' + nombre.toUpperCase() + ' ' + 'bienvenido/a!, por favor registrate para comprar con nosotros');
 }
 //llamada a la funcion
 solicitarNombre();
 
+//funcion para ingresar
+//variables
+let usuario;
+let password;
+//funcion
+const ingresoUsuario = () => {
+    let usuario = prompt("Ingresa tu usuario para continuar");
+    let password = prompt("Ingresa tu contraseña para continuar");
+
+    while(usuario=== '' ||password === ''){
+        usuario = prompt("Ingresa tu usuario para continuar");
+        password = prompt("Ingresa tu contraseña para continuar");
+    } 
+    //muestro al usuario
+    alert(usuario.toUpperCase() + ' ' + 'ingresaste correctamente');    
+};
+  ingresoUsuario();
 //funcion para elegir destino
-//Declaracion variables
 
-let calcular = false;
-let destino;
-let precio = 0;
-//funcion 
+//Array
+const carrito = [];
 
-function elegirDestino() {
-    while (calcular === false) {
+//Clase
+class destino{
+    constructor(tramo, precio) {
+    this.name = tramo.toUpperCase();
+    this.price = parseInt(precio);
 
-        destino = parseInt(prompt('Elija la opción de viaje \n 1- Bs.As-Cordoba \n 2- Cordoba-Bs.As \n 3- Bs.As-Santa Fe \n 4- Santa Fe-Bs.As \n 5- Santa Fe-Cordoba \n 6- Cordoba-Santa Fe'));
+}
+}
+//Objetos con tramos y precios
+const destino1 = new destino('Bs.As-Cordoba', 3500);
+const destino2 = new destino('Cordoba-Bs.As', 3500);
+const destino3 = new destino('Bs.As-Santa Fe', 2750);
+const destino4 = new destino('Santa Fe-Bs.As', 2750);
+const destino5 = new destino('Santa Fe-Cordoba', 2500);
+const destino6 = new destino('Cordoba-Santa Fe', 2500);
 
-        switch (destino) {
+//declaracion de variables
+let calcular = true;
+let pasaje;
+
+//funcion para agregar destinos al carrito
+const agregarPasaje = () => {
+    while (calcular === true) {
+        pasaje = parseInt(prompt('Elija la opción de viaje \n 1- Bs.As-Cordoba \n 2- Cordoba-Bs.As \n 3- Bs.As-Santa Fe \n 4- Santa Fe-Bs.As \n 5- Santa Fe-Cordoba \n 6- Cordoba-Santa Fe \n 7- FINALIZAR COMPRA'));
+
+        switch (pasaje) {
             case 1:
-                calcular = true;
-                destino = 'Bs.As-Cba';
-                precio = 3500;
-                alert('Usted ha seleccionado tipo de viaje IDA' + ' ' + destino + ' ' + 'que tiene un costo de $' + ' ' + precio + ' ' + '+ IVA');
-                return precio;
+
+                carrito.push(destino1);
+                alert('usted selecciono el tramo ' + ' ' + destino1.name + ' ' + 'que tiene un costo de $' + ' ' + destino1.price +  ' ' + 'IVA' );
+
+                break;
+
             case 2:
-                destino = 'Cba-Bs.As';
-                precio = 3500;
-                alert('Usted ha seleccionado tipo de viaje IDA' + ' ' + destino + ' ' + 'que tiene un costo de $' + ' ' + precio + ' ' + '+ IVA');
-                return precio;
+
+                carrito.push(destino2);
+                alert('usted selecciono el tramo ' + ' ' + destino2.name + ' ' + 'que tiene un costo de $' + ' ' + destino2.price +  ' ' + 'IVA');
+                break;
             case 3:
-                destino = 'Bs.As-Sta Fe';
-                precio = 2750;
-                alert('Usted ha seleccionado tipo de viaje IDA' + ' ' + destino + ' ' + 'que tiene un costo de $' + ' ' + precio + ' ' + '+ IVA');
-                return precio;
+
+                carrito.push(destino3);
+                alert('usted selecciono el tramo' + ' ' + destino3.name + ' ' + 'que tiene un costo de $' + ' ' + destino3.price +  ' ' + 'IVA');
+                break;
             case 4:
-                destino = 'Sta Fe-Bs.As';
-                precio = 2750;
-                alert('Usted ha seleccionado tipo de viaje IDA' + ' ' + destino + ' ' + 'que tiene un costo de $' + ' ' + precio + ' ' + '+ IVA');
-                return precio;
+
+                carrito.push(destino4);
+                alert('usted selecciono el tramo ' + ' ' + destino4.name + ' ' + 'que tiene un costo de $' + ' ' + destino4.price +  ' ' + 'IVA');
+                break;
             case 5:
-                destino = 'Sta Fe-Cba';
-                precio = 2750;
-                alert('Usted ha seleccionado tipo de viaje IDA' + ' ' + destino + ' ' + 'que tiene un costo de $' + ' ' + precio + ' ' + '+ IVA');
-                return precio;
+
+                carrito.push(destino5);
+                alert('usted selecciono el tramo' + ' ' + destino5.name + ' ' + 'que tiene un costo de $' + ' ' + destino5.price +  ' ' + 'IVA');
+                break;
             case 6:
-                destino = 'Cba-Sta Fe';
-                precio = 2750;
-                alert('Usted ha seleccionado tipo de viaje IDA' + ' ' + destino + ' ' + 'que tiene un costo de $' + ' ' + precio + ' ' + '+ IVA');
-                return precio;
+
+                carrito.push(destino6);
+                alert('usted selecciono el tramo' + ' ' + destino6.name + ' ' + 'que tiene un costo de $' + ' ' + destino6.price +  ' ' + 'IVA');
+                break;
+            case 7:
+
+                calcular = false;
+                alert('Usted ha reservado los pasajes');
+                break;
 
             default:
+
                 alert('Seleccionó una opción no válida');
-
+                break;
         }
-
+        
     }
+
 }
+console.log(carrito);
+agregarPasaje();
 
-let precioTramo = elegirDestino();
+//funcion para calcular el total
+const total = carrito.reduce((acc, el) => {
+    return acc + el.price;
+  }, 0);
 
-//funcion para elegir ida y vuelta
-
-//declaracion de variable
-let tramo = false;
-//funcion
-function idaVuelta() {
-    while (tramo === false) {
-        let elijaTramo = prompt('Seleccione la opción ida o idavuelta');
-
-        if (elijaTramo === 'ida') {
-            tramo = true;
-            precioTramo = precio;
-            alert('Eligió la opción ida, el precio del pasaje es de $' + ' ' + precioTramo + ' ' + '+ IVA');
-            return precioTramo;
-        } else if (elijaTramo === 'idavuelta') {
-            precioTramo = precio * 2;
-            alert('Eligió la opción idavuelta, el precio del pasaje es de $' + ' ' + precioTramo + ' ' + '+ IVA');
-            return precioTramo;
-        }
-    }
-}
-let precioCantidad = idaVuelta(precioTramo);
+  alert('El precio de su reserva es de $' + ' ' + Math.round(total));
+  console.log(carrito);
 
 //funcion para comprar pasaje segun cantidad pasajeros
 //Declaracion variables
 
 calcular = false;
+let precioTramo;
 //funcion 
-function calcularPasaje() {
+const calcularPasaje = () => {
 
     while (calcular === false) {
 
@@ -105,42 +133,42 @@ function calcularPasaje() {
 
         if (!isNaN(cantidad)) {
             calcular = true;
-            precioCantidad = cantidad * precioTramo;
-            alert('el precio de su pasaje es de: $' + precioCantidad + ' ' + '+ IVA');
-            return precioCantidad;
+            precioTramo = total * cantidad;
 
-        } else if (!isNaN(cantidad)) {
-            precioCantidad = cantidad * precioTramo;
-            alert('el precio de su pasaje es de: $' + precioCantidad + ' ' + '+ IVA');
-            return precioCantidad;
+            alert('el precio de su pasaje es de: $' + precioTramo + ' ' + '+ IVA');
+            return precioTramo;
+
+        } else {
+            calcular = false;
+            alert('Ha elegido una opcion invalida');
 
         }
     }
 }
 
 //creacion de variable global y llamada a funcion
-let precioPasaje = calcularPasaje(precioCantidad);
+let precioPasaje = calcularPasaje(precioTramo);
 
 //funcion descuento por tipo pasajero
 //declaracion de variables
 let pasajero = false;
 //funcion
-function descuentoPasaje() {
+const descuentoPasaje = () => {
     while (pasajero === false) {
         let tipoPasajero = parseInt(prompt('Seleccione la opción de tipo de pasajero \n 1-Adulto \n 2-Niño \n 3-Jubilado'));
 
         switch (tipoPasajero) {
             case 1:
                 pasajero = true;
-                precioPasaje = precioCantidad * 1;
+                precioPasaje = precioTramo * 1;
                 alert('Seleccionaste Adulto, tu pasaje no tiene descuento, el costo es de' + ' ' + '$' + Math.round(precioPasaje) + '' + '+IVA');
                 return precioPasaje;
             case 2:
-                precioPasaje = precioCantidad * 0;
+                precioPasaje = precioTramo * 0;
                 alert('Seleccionaste Niño, niños viajan gratis, el costo de tu pasaje es de ' + ' ' + '$' + precioPasaje + '' + '+IVA');
                 return precioPasaje;
             case 3:
-                precioPasaje = precioCantidad * 0.85;
+                precioPasaje = precioTramo * 0.85;
                 alert('Seleccionaste Jubilado, tu pasaje tiene un 15% de descuento, su costo es de' + ' ' + '$' + Math.round(precioPasaje) + '' + '+IVA');
                 return Math.round(precioPasaje);
             default:
@@ -152,7 +180,7 @@ function descuentoPasaje() {
 let precioDescuento = descuentoPasaje(precioPasaje);
 
 //funcion para calcular IVA
-function calcularIva() {
+const calcularIva = () =>{
     alert('El costo de su compra con IVA es de $' + ' ' + Math.round(precioDescuento * 1.21))
     return Math.round(precioDescuento * 1.21);
 }
@@ -164,7 +192,7 @@ let totalPagar = calcularIva(precioDescuento);
 let pago = false;
 let cuota;
 //función 
-function seleccionPago() {
+const seleccionPago = () => {
     while (pago === false) {
         let formaPago = prompt('Elija una forma de pago, debito, transferencia o credito');
 
@@ -208,4 +236,3 @@ function seleccionPago() {
 seleccionPago(totalPagar);
 
 alert('Muchas gracias por comprar con BulletTrain, que tenga un excelente viaje!');
-
