@@ -55,7 +55,7 @@ const tramos = [
 let elegir = false;
 let from;
 let fromGuardado;
-function elegirOrigen(){
+const elegirOrigen = ()=> {
     while (elegir === false){
      from = prompt('De donde quiere salir \n Buenos Aires \n Cordoba \n Santa Fe \n');
      fromGuardado = from.toLowerCase(); 
@@ -77,7 +77,7 @@ elegirOrigen();
 let continuar = false;
 let to;
 let toGuardado;  
-function elegirDestino(){
+const elegirDestino = () => {
 while (continuar === false){
  to = prompt('A donde quiere dirigirse sin repetir origen \n Buenos Aires \n Cordoba \n Santa Fe');
  toGuardado = to.toLowerCase();
@@ -97,7 +97,7 @@ elegirDestino();
 
 //metodo filter para filtrar por destino y origen
 let filtrado;
-function filtrarPasaje (arr, fromGuardado, toGuardado) {
+const filtrarPasaje = (arr, fromGuardado, toGuardado) => {
    filtrado = arr.filter((el) => {
     
     return el.from.toLowerCase() === fromGuardado && el.to.toLowerCase() === toGuardado;
@@ -113,7 +113,7 @@ alert(`Ahora que ya conoce el origen y destino puede elegir un horario`);
 //funcion para elegir horario
 validar = false;
 let horario;
-function validarHorario(){
+const validarHorario = () => {
 while (validar === false){
 horario = prompt('Elija el horario en el que desea salir \n  13:00 \n  23:00 ');
    
@@ -133,7 +133,7 @@ validarHorario();
 //metodo find para elegir el horario deseado
 let encontrado;
 //buscar pasaje usando metodo Find
-function buscarHorario(arr, horario){
+const buscarHorario = (arr, horario) => {
  pasajeEncontrado = arr.find((el)=>{
     return el.at === horario
 });
