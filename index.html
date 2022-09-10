@@ -60,18 +60,23 @@
                     </div>
                     
                     <div class="col-lg-2 col-md-3 col-sm-6">
-                        <label for="tramo">Tramo</label>
-                        <select name="tramo" id="tramo">
-                            <option value="tramo">Tramo</option>
-                            <option value="bsas-cba">Bs.As-Cordoba</option>
-                            <option value="Cba-bsas">Cordoba-Bs.As</option>
-                            <option value="bsas-stafe">Bs.As-Santa Fe</option>
-                            <option value="stafe-bsas">Santa Fe-Bs.As</option>
-                            <option value="stafe-cba">Santa Fe-Cordoba</option>
-                            <option value="cba-stafe">Cordoba-Santa Fe</option>
+                        <label for="origen">Origen</label>
+                        <select name="origen" id="origen">
+                            <option value="origen">Origen</option>
+                            <option value="buenos-aires">Buenos Aires</option>
+                            <option value="Cordoba">Cordoba</option>
+                            <option value="Santa Fe">Santa Fe</option>
                         </select>
                     </div>
-                    
+                    <div class="col-lg-2  col-md-3 col-sm-6">
+                        <label for="destino">Destino</label>
+                        <select name="destino" id="destino">
+                            <option value="destino">Destino</option>
+                            <option value="buenos-aires">Buenos Aires</option>
+                            <option value="Cordoba">Cordoba</option>
+                            <option value="Santa Fe">Santa Fe</option>
+                        </select>
+                    </div>
 
                     <div class="col-lg-2  col-md-3 col-sm-6">
                         <label for="fecha">Partida</label>
@@ -81,7 +86,15 @@
                         <label for="fecha">Regreso</label>
                         <input type="date" name="regreso" id="regreso">
                     </div>
+                    <div class="col-lg-2  col-md-6 col-sm-6">
+                        <label for="horario">Horarios</label>
+                        <select name="horario" id="horario">
+                            <option value="horario">Horarios</option>
+                            <option value="hora1">13:00</option>
+                            <option value="hora2">23:00</option>
 
+                        </select>
+                    </div>
                     <div class="col-lg-2  col-md-3 col-sm-6">
                         <label for="pasajero">Tipo de Pasajero</label>
                         <select name="pasajero" id="pasajero">
@@ -107,30 +120,14 @@
             <div class="card__servicios">
                 <h3>Conozca y elija su servicio</h3>
                 <div class="card__flex">
-                    <div class="card" style="width: 18rem;">
-                        <img src="./assets/tren-movimiento.jpg" class="card-img-top" alt="tren moviendose">
-                        <div class="card-body">
-                            <h4 class="card-title">Buenos Aires - Cordoba</h4>
-                            <p class="card-text">Ida y vuelta Bs.As-Cba, 2,5 horas por tramo.</p>
-                            <h5>ARS 7000 <span>/persona</span></h5>
-                            <a href="#" class="card-link">Comprar</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="./assets/tren-por-salir.jpg" class="card-img-top" alt="tren por salir">
-                        <div class="card-body">
-                            <h4 class="card-title">Buenos Aires - Santa Fe</h4>
-                            <p class="card-text">Ida y vuelta Bs.As-Sta Fe, 1,5 horas por tramo.</p>
-                            <h5>ARS 5500 <span>/persona</span></h5>
-                            <a href="#" class="card-link">Comprar</a>
-                        </div>
-                    </div>
+                    <ul id="lista"></ul>
+                    
                 </div>
 
-                <h6 class="terminos">* Terminos y condiciones</h6>
-                <p class="terminos__texto">Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.</p>
-                <p class="terminos__texto">Jubilados 15% de descuento.</p>
-                <p class="terminos__texto">La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano. </p>
+                
+                <p class="terminos__texto"></p>
+                <p class="terminos__texto"></p>
+                <p class="terminos__texto"> </p>
             </div>
         </section>
         <!--contacto con formulario-->
