@@ -87,11 +87,18 @@ h3{
     
 }
 .card{
+    margin: 1rem;
+    padding: 1rem;
+    border: 0.2rem solid rgb(114, 110, 110);
+    box-shadow: 1rem 0.5rem 0.2rem -0.2rem rgba(70, 69, 69, 0);
     text-align: center;
 }
 .card-img-top{
     width: 100%;
     height: 10rem;
+}
+li{
+    list-style: none;
 }
 .card-title{
     font-weight: bold;
@@ -101,6 +108,13 @@ h3{
     background-color: rgb(232, 162, 247);
     border-radius: 0.5rem;
     padding: 0.3rem 1rem;
+}
+h4{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+h5{
+    font-weight: bold;
 }
 h6,.terminos__texto{
     font-weight: bold;
@@ -140,6 +154,27 @@ textarea{
 }
 .footer__text{
     font-weight: bold;
+}
+.terminos{
+    margin-top: 2rem;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.resultado__compra{
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+}
+.saludo{
+    margin: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration-color: rgb(156, 19, 138);
 }
 
 /*mobile last media queries*/
