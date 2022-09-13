@@ -39,7 +39,21 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-outline-dark">Registarse</button>
+                <!--Formulario para registrarse-->
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Registrarse
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><label for="nombreUsuario" class="nombreUsuario">Nombre Usuario</label></li>
+                        <li> <input class="nombreUsuario__input" type="text" id="nombreUsuario" name="nombre" value="">
+                        </li>
+                        <li><label for="contraseñaUsuario" class="contraseñaUsuario">Contraseña</label></li>
+                        <li> <input class="contraseñaUsuario__input" type="password" id="contraseñaUsuario"
+                                name="contraseña" value=""></li>
+                        <button type="button" class="btn__ingresar">Ingresar</button>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -63,19 +77,21 @@
                         <label for="origen">Origen</label>
                         <select name="origen" id="origen">
                             <option value="origen">Origen</option>
-                            <option value="buenos-aires">Buenos Aires</option>
-                            <option value="Cordoba">Cordoba</option>
-                            <option value="Santa Fe">Santa Fe</option>
+                            <option value="buenos aires">Buenos Aires</option>
+                            <option value="cordoba">Cordoba</option>
+                            <option value="santa fe">Santa Fe</option>
                         </select>
+                        <span id="origenSeleccionado"></span>
                     </div>
                     <div class="col-lg-2  col-md-3 col-sm-6">
                         <label for="destino">Destino</label>
                         <select name="destino" id="destino">
                             <option value="destino">Destino</option>
-                            <option value="buenos-aires">Buenos Aires</option>
-                            <option value="Cordoba">Cordoba</option>
-                            <option value="Santa Fe">Santa Fe</option>
+                            <option value="buenos aires">Buenos Aires</option>
+                            <option value="cordoba">Cordoba</option>
+                            <option value="santa fe">Santa Fe</option>
                         </select>
+                        <span id="destinoSeleccionado"></span>
                     </div>
 
                     <div class="col-lg-2  col-md-3 col-sm-6">
@@ -90,20 +106,28 @@
                         <label for="horario">Horarios</label>
                         <select name="horario" id="horario">
                             <option value="horario">Horarios</option>
-                            <option value="hora1">13:00</option>
-                            <option value="hora2">23:00</option>
-
+                            <option value="13:00">13:00</option>
+                            <option value="23:00">23:00</option>
                         </select>
+                        <span id="horarioSeleccionado"></span>
+                    </div>
+                    <div class="buscar">
+                        <button type="button" id="buscar" class="btn btn-buscar">Buscar</button>
+
+                        <button type="button" id="agregar" class="btn btn-agregar">Agregar</button>
+
                     </div>
                     <div class="col-lg-2  col-md-3 col-sm-6">
                         <label for="pasajero">Tipo de Pasajero</label>
                         <select name="pasajero" id="pasajero">
                             <option value="pasajero">Pasajeros</option>
-                            <option value="Adultos">Adultos</option>
-                            <option value="Adultos">Menores</option>
-                            <option value="Adultos">Jubilados</option>
+                            <option value="adulto">Adultos</option>
+                            <option value="menor">Menores</option>
+                            <option value="jubilado">Jubilados</option>
                         </select>
+                        <span id="pasajeroSeleccionado"></span>
                     </div>
+                    
                     <div class="col-lg-2  col-md-3 col-sm-6">
                         <label for="number">Cantidad</label>
                         <input type="number" name="number" id="number">
@@ -111,9 +135,17 @@
 
                 </div>
                 </div>
-                <button type="button" class="btn btn-comprar">Comprar pasaje</button>
+                <button id="comprar" type="button" class="btn btn-comprar">Comprar reserva</button>
+                <button id="Finalizar" type="button" class="btn btn-finalizar">Finalizar compra</button>
             </form>
             <!--Texto agregado con JS donde figura la compra realizada-->
+        </section>
+
+        <h2 id="reservas">Reservas</h2>
+        <!--Texto agregado con Js con las reservas y cards mostrando los resultados-->
+        <section class="reserva">
+            <div class="reservas"></div>
+
         </section>
         <!--cards servicios-->
         <section class="servicios" id="servicios">
@@ -131,6 +163,31 @@
                 <p class="terminos__texto"></p>
                 <p class="terminos__texto"> </p>
             </div>
+        </section>
+        <!--seccion para realizar el pago con JS-->
+        <section id="pago">
+            <h2>Haga su pago aquí</h2>
+            <form action="" class="pago">
+                <div class="form-check">
+                    <input value="debito" class="form-check" type="radio" name="flexRadioDefault" id="debito">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Debito
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input value="transferencia" class="form-check" type="radio" name="flexRadioDefault" id="transferencia" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Transferencia
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input value="credito" class="form-check" type="radio" name="flexRadioDefault" id="credito" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Tarjeta Crédito
+                    </label>
+                </div>
+                <span id="pagoSeleccionado"></span>
+            </form>
         </section>
         <!--contacto con formulario-->
         <section class="contactenos" id="contactenos">

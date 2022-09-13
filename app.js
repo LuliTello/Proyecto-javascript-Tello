@@ -319,7 +319,7 @@ for (const viaje of tramos) {
     <h4> ${viaje.from} - ${viaje.to} </h4>
     <p> ${viaje.at} Hs</p>
     <h5> $ ${viaje.price} /persona</h5> 
-    <a href="">Agregar</a>
+    <button class="card__link">Agregar</button>
     </div>`
 
     ul.append(li)
