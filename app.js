@@ -61,6 +61,8 @@ class destinoViaje {
 //DOM y Eventos
 
 // evento click para ingreso de usuario
+const btnUsuario = document.querySelector('.btn__ingresar')
+const header = document.querySelector('header')
 btnUsuario.addEventListener('click', () => {
     const nombre = document.querySelector('.nombreUsuario__input').value
     const contraseña = document.querySelector('.contraseñaUsuario__input').value
