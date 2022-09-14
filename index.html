@@ -115,22 +115,7 @@
                         <button type="button" id="buscar" class="btn btn-buscar">Buscar</button>
 
                         <button type="button" id="agregar" class="btn btn-agregar">Agregar</button>
-
-                    </div>
-                    <div class="col-lg-2  col-md-3 col-sm-6">
-                        <label for="pasajero">Tipo de Pasajero</label>
-                        <select name="pasajero" id="pasajero">
-                            <option value="pasajero">Pasajeros</option>
-                            <option value="adulto">Adultos</option>
-                            <option value="menor">Menores</option>
-                            <option value="jubilado">Jubilados</option>
-                        </select>
-                        <span id="pasajeroSeleccionado"></span>
-                    </div>
-
-                    <div class="col-lg-2  col-md-3 col-sm-6">
-                        <label for="number">Cantidad</label>
-                        <input type="number" name="number" id="number">
+                        <button type="button" id="borrar" class="btn btn-borrar">Borrar</button>
                     </div>
 
                 </div>
@@ -197,20 +182,20 @@
         <section class="contactenos" id="contactenos">
             <h2>Contactenos y reciba nuestras promociones</h2>
 
-            <form class="form" action="" method="" enctype="">
+            <form class="form-contacto" action="" method="" enctype="">
                 <div class="form__grid">
                     <div>
                         <label for="nombre">Nombre y Apellido:</label>
-                        <input value="nombre" class="form__grid--input" type="text" id="nombre" name="nombre"
+                        <input class="form__grid--input" type="text" id="nombre" name="nombre"
                             placeholder="Nombre y apellido">
                     </div>
                     <div>
                         <label for="email">Email:</label>
-                        <input value="email" class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
+                        <input  class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
                     </div>
                     <div>
                         <label for="telefono">Teléfono:</label>
-                        <input value="telefono" class="form__grid--input" type="text" name="telefono" id="telefono"
+                        <input class="form__grid--input" type="text" name="telefono" id="telefono"
                             placeholder="Telefono">
                     </div>
                     <div>
@@ -224,6 +209,7 @@
                     </div>
                     <button id="submit" type="submit" class="btn btn-success">Enviar</button>
                 </div>
+            </form>
         </section>
     </main>
     <!--footer-->

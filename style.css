@@ -64,7 +64,7 @@ label{
     margin: 0.5rem 0;
 }
 
-.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-quitar,.btn-finalizar{
+.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-quitar,.btn-finalizar,.btn-borrar{
     margin: 1rem auto; 
     padding: 0.5rem 2rem;
     background-color: rgb(250, 129, 250); 

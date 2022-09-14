@@ -22,6 +22,11 @@ let jubilado = 0.85;
 let niño = 0;
 let pago = false;
 let cuota;
+let reservados;
+let totalCompra;
+let pagar;
+let totalPagar;
+let valorCuota;
 
 const tramos = [
 
@@ -53,88 +58,8 @@ class destinoViaje {
     }
 }
 
-/*const descuentoPasaje = () => {
-    while (pasajero === false) {
-        let tipoPasajero = parseInt(prompt('Seleccione la opción de tipo de pasajero \n 1-Adulto \n 2-Niño \n 3-Jubilado'));
+//DOM y Eventos
 
-        switch (tipoPasajero) {
-            case 1:
-                pasajero = true;
-
-                precioPasaje = precioTramo * adulto;
-                alert('Seleccionaste Adulto, tu pasaje no tiene descuento, el costo es de' + ' ' + '$' + Math.round(precioPasaje) + ' ' + 'FINAL');
-                return precioPasaje;
-
-            case 2:
-
-                precioPasaje = precioTramo * niño;
-                alert('Seleccionaste Niño, niños viajan gratis, el costo de tu pasaje es de ' + ' ' + '$' + precioPasaje + ' ' + 'FINAL');
-                return precioPasaje;
-
-            case 3:
-
-                precioPasaje = precioTramo * jubilado;
-                alert('Seleccionaste Jubilado, tu pasaje tiene un 15% de descuento, su costo es de' + ' ' + '$' + Math.round(precioPasaje) + ' ' + 'FINAL');
-                return Math.round(precioPasaje);
-
-            default:
-                alert('Seleccionó una opcion no válida');
-        }
-    }
-}
-//llamado de función y creación de variable
-let totalPagar = descuentoPasaje(precioPasaje);
-
-//función para seleccionar tipo de pago
-//declaración de variables
-
-const seleccionPago = () => {
-    while (pago === false) {
-        let formaPago = prompt('Elija una forma de pago, debito, transferencia o credito');
-
-        if (formaPago === 'debito' || formaPago === 'transferencia') {
-            pago = true;
-            totalPagar = precioPasaje * 0.85;
-            alert('Usted ha seleccionado' + ' ' + formaPago + ' ' + ', tiene un 15% de descuento, debe abonar $' + ' ' + Math.round(totalPagar) + ' ' + 'FINAL');
-            return Math.round(totalPagar);
-        } else if (formaPago === 'credito') {
-
-            totalPagar = precioPasaje;
-            alert('Usted ha seleccionado' + ' ' + formaPago + ' ' + ', debe abonar $' + ' ' + Math.round(totalPagar) + ' ' + 'FINAL en cuotas');
-
-            //switch para seleccionar cuotas a pagar y calcular el valor de la cuota
-            let ingreseCuotas = parseInt(prompt('Elija la opción de cuotas que desee  \n 1- 1 cuota sin interés \n 2- 3 cuotas con 25% de interés \n 3- 6 cuotas con 40% de interés'));
-            switch (ingreseCuotas) {
-                case 1:
-                    cuota = 1;
-                    valorCuota = totalPagar / cuota;
-                    alert('Ha seleccionado 1 cuota, el valor de su cuota por mes es de: $ ' + Math.round(valorCuota) + ' ' + 'FINAL');
-                    return Math.round(valorCuota);
-                case 2:
-                    cuota = 3;
-                    valorCuota = (totalPagar * 1.25) / cuota;
-                    alert('Ha seleccionado 3 cuotas, el valor de su cuota por mes es de: $ ' + Math.round(valorCuota) + ' ' + 'FINAL');
-                    return Math.round(valorCuota);
-                case 3:
-                    cuota = 6;
-                    valorCuota = (totalPagar * 1.40) / cuota;
-                    alert('Ha seleccionado 6 cuotas, el valor de su cuota por mes es de: $ ' + Math.round(valorCuota) + ' ' + 'FINAL');
-                    return Math.round(valorCuota);
-                default:
-                    alert('Ingrese una opción válida');
-            }
-
-        }
-    }
-
-}
-//llamada funcion
-seleccionPago(totalPagar);*/
-
-//DOM
-
-const btnUsuario = document.querySelector('.btn__ingresar')
-const header = document.querySelector('header')
 // evento click para ingreso de usuario
 btnUsuario.addEventListener('click', () => {
     const nombre = document.querySelector('.nombreUsuario__input').value
@@ -204,7 +129,7 @@ selectHorario.addEventListener('change', () => {
     elegirHorario();
 })
 //buscar pasaje con parametros seleccionados
-let reservados;
+
 const buscar = document.querySelector('#buscar')
 buscar.addEventListener('click', () => {
 
@@ -249,8 +174,19 @@ agregar.addEventListener('click', () => {
     }
 })
 
+//eliminar una reserva
+const borrar = document.querySelector('#borrar')
+borrar.addEventListener('click', () => {
+
+    for (const elemento of reservados) {
+        reservas.pop(elemento);
+
+    }
+    console.log(reservas);
+    })
+
 //sumar total de reserva para comprar
-let totalCompra;
+
 const section = document.querySelector('.reserva')
 const comprar = document.querySelector('#comprar')
 comprar.addEventListener('click', ()=>{
@@ -269,8 +205,6 @@ section.append(span);
 
 //forma de pago
 
-let pagar;
-let totalPagar;
 const formaPago = document.querySelector('#formaPago')
 formaPago.addEventListener('change', ()=>{
 
@@ -296,7 +230,7 @@ formaPago.addEventListener('change', ()=>{
 })
 //cuotas
 
-let valorCuota;
+
 const cuotas = document.querySelector('#cuotas');
 cuotas.addEventListener('change', ()=>{
     valorCuota = cuotas.value.toLowerCase();
@@ -317,30 +251,15 @@ cuotas.addEventListener('change', ()=>{
     console.log(parseInt(totalCuota));
 })
 
-//change para seleccionar tipo pasajero
-const selectPasajero = document.querySelector('#pasajero')
-selectPasajero.addEventListener('change', () => {
-    pasajero = selectPasajero.value;
-    console.log(pasajero);
-
-    const elegirPasajero = () => {
-        if (pasajero === 'adulto' || pasajero === 'menor' || pasajero === 'jubilado') {
-            document.querySelector('#pasajeroSeleccionado').innerText = `Usted seleccionó tipo de pasajero ${pasajero}`;
-        } else {
-            document.querySelector('#pasajeroSeleccionado').innerText = 'por favor seleccione una opcion valida';
-        }
-    }
-    elegirPasajero();
-})
 
 //formulario de contacto
-const formulario = document.querySelector('.form')
+const formulario = document.querySelector('.form-contacto')
 const nombre = document.querySelector('#nombre')
-const email = document.querySelector('#email')
-const telefono = document.querySelector('#telefono')
-const textarea = document.querySelector('#consulta')
+    const email = document.querySelector('#email')
+    const telefono = document.querySelector('#telefono')
+    const textarea = document.querySelector('#consulta')
 formulario.addEventListener('submit', (e)=>{
-
+    
     e.preventDefault();
 
     console.log(nombre.value)
@@ -351,9 +270,6 @@ formulario.addEventListener('submit', (e)=>{
 
 });
    
-
-
-
 
 //agrego h2
 const h2 = document.getElementById('h2');
@@ -389,18 +305,6 @@ terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir 
 terminoClases[1].innerText = 'Jubilados 15% de descuento.'
 terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
 
-/*//Modifico los value de input nombre
-const inputNombre = document.getElementById('nombre')
-inputNombre.value = 'Ingrese nombre y apellido';
-
-const inputMail = document.getElementById('email')
-inputMail.value = 'Ingrese su mail';
-
-const inputTel = document.getElementById('telefono')
-inputTel.value = 'Ingrese su telefono';
-
-const inputMsj = document.getElementById('consulta')
-inputMsj.value = 'Ingrese su consulta o reclamo';*/
 
 //mensaje de salida una vez hecha la compra
 const p = document.createElement('p');
