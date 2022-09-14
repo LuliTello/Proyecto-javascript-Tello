@@ -158,13 +158,32 @@ h6,.terminos__texto{
     display: flex;
     justify-content: space-around;
 }
-.labelPago{
+.labelPago,.labelCuotas{
     font-weight: bold;
     font-size: larger;
     margin-right: 1rem;
+    margin-left: 1rem;
 }
-#formaPago{
+#formaPago,#cuotas{
     width: 15rem;
+}
+#pagoSeleccionado{
+    display: block;
+    text-align: center;
+}
+#cuotaSeleccionada{
+    display: block;
+    text-align: center;
+}
+.pago{
+    display: flex;
+    flex-direction: column;
+}
+.form-pago{
+    margin: 1rem auto;
+}
+.form-cuota{
+    margin: 1rem auto;
 }
 /*contacto*/
 .form__grid{
@@ -208,6 +227,7 @@ textarea{
 }
 
 .resultado__compra{
+    display: block;
     margin: 1rem;
     padding: 1rem;
     font-size: 1rem;

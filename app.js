@@ -256,24 +256,17 @@ const comprar = document.querySelector('#comprar')
 comprar.addEventListener('click', ()=>{
     
 totalCompra = reservas.reduce((acc, el) => {
-    return acc + el.price;
+    return acc + parseInt(el.price);
 }, 0);
 
-console.log(totalCompra);
+console.log(parseInt(totalCompra));
 
 let span = document.createElement('span')
-span.innerText= `El total de su compra es de $ ${totalCompra} + IVA, seleccione su forma de pago`
+span.innerText= `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`
 span.classList.add('compra_span')
 section.append(span);
 })
-//finalizar compra
-/*const finalizar = document.querySelector('#finalizar')
-compraFinalizada = false;
-finalizar.addEventListener('click', () =>{
-   
-    
-})*/
-//forma de pago
+
 //forma de pago
 
 let pagar;
@@ -291,15 +284,38 @@ formaPago.addEventListener('change', ()=>{
         }else if (pagar === 'transferencia'){
             totalPagar = (totalCompra * 1.21) * 0.85;
             document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;
-        }else{
+        }else if(pagar === 'credito'){
             totalPagar = totalCompra *1.21;
-            document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final`;
+            document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;
+            
         }
         
         }
         seleccionPago();
+        console.log(parseInt(totalPagar));
 })
+//cuotas
 
+let valorCuota;
+const cuotas = document.querySelector('#cuotas');
+cuotas.addEventListener('change', ()=>{
+    valorCuota = cuotas.value.toLowerCase();
+    console.log(valorCuota);
+    const seleccionCuotas = () => {
+        if(valorCuota === 'una'){
+            totalCuota= totalPagar/1;
+            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
+        }else if(valorCuota === 'tres'){
+            totalCuota = (totalPagar*1.25)/3;
+            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
+        }else{
+            totalCuota = (totalPagar*1.40)/6;
+            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
+        }
+    }
+    seleccionCuotas();
+    console.log(parseInt(totalCuota));
+})
 
 //change para seleccionar tipo pasajero
 const selectPasajero = document.querySelector('#pasajero')
@@ -318,17 +334,26 @@ selectPasajero.addEventListener('change', () => {
 })
 
 //formulario de contacto
-/*const submit = document.querySelector('#submit')
-submit.addEventListener('submit', (e)=>{
-   
+const formulario = document.querySelector('.form')
+const nombre = document.querySelector('#nombre')
+const email = document.querySelector('#email')
+const telefono = document.querySelector('#telefono')
+const textarea = document.querySelector('#consulta')
+formulario.addEventListener('submit', (e)=>{
+
     e.preventDefault();
 
-    let formulario =e.target
-    console.log(formulario[0].value)
-    console.log(formulario[1].value)
-    console.log(formulario[2].value)
-    console.log(formulario[3].value)
-})*/
+    console.log(nombre.value)
+    console.log(email.value)
+    console.log(telefono.value)
+    console.log(textarea.value)
+
+
+});
+   
+
+
+
 
 //agrego h2
 const h2 = document.getElementById('h2');

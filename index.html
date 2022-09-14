@@ -72,7 +72,7 @@
                         <label for="ida-vuelta">Ida</label>
                         <input type="radio" id="ida" name="trayecto" class="radio__button">
                     </div>
-                    
+
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <label for="origen">Origen</label>
                         <select name="origen" id="origen">
@@ -127,7 +127,7 @@
                         </select>
                         <span id="pasajeroSeleccionado"></span>
                     </div>
-                    
+
                     <div class="col-lg-2  col-md-3 col-sm-6">
                         <label for="number">Cantidad</label>
                         <input type="number" name="number" id="number">
@@ -149,8 +149,9 @@
         </section>
         <!--cards servicios-->
         <section class="servicios" id="servicios">
-            
-            <h2 id="h2"></h2><!--texto agregado con JS-->
+
+            <h2 id="h2"></h2>
+            <!--texto agregado con JS-->
             <div class="card__servicios">
                 <h3>Conozca y elija su servicio</h3>
                 <div class="card__flex">
@@ -170,16 +171,26 @@
             <form action="" class="pago">
                 <div class="form-pago">
                     <label class="labelPago" for="pago">Forma de pago</label>
-                        <select name="pago" id="formaPago">
-                            <option value="forma">Elija como pagar</option>
-                            <option value="debito">Débito</option>
-                            <option value="transferencia">Transferencia</option>
-                            <option value="credito">Crédito</option>
-                            
-                        </select>
-                
+                    <select name="pago" id="formaPago">
+                        <option value="forma">Elija como pagar</option>
+                        <option value="debito">Débito</option>
+                        <option value="transferencia">Transferencia</option>
+                        <option value="credito">Crédito</option>
+                    </select>
+                    <span id="pagoSeleccionado"></span>
                 </div>
-                <span id="pagoSeleccionado"></span>
+                <div class="form-cuota">
+
+                    <label class="labelCuotas" for="cuotas">Cantidad Cuotas</label>
+                    <select name="cuotas" id="cuotas">
+                        <option value="elijaCuota">Elija sus cuotas</option>
+                        <option value="una">1 Sin interés</option>
+                        <option value="tres">3 con 25% de interés</option>
+                        <option value="seis">6 con 40% de interés</option>
+
+                    </select>
+                </div>
+                <span id="cuotaSeleccionada"></span>
             </form>
         </section>
         <!--contacto con formulario-->
@@ -190,16 +201,16 @@
                 <div class="form__grid">
                     <div>
                         <label for="nombre">Nombre y Apellido:</label>
-                        <input class="form__grid--input" type="text" id="nombre" name="nombre"
+                        <input value="nombre" class="form__grid--input" type="text" id="nombre" name="nombre"
                             placeholder="Nombre y apellido">
                     </div>
                     <div>
                         <label for="email">Email:</label>
-                        <input class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
+                        <input value="email" class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
                     </div>
                     <div>
                         <label for="telefono">Teléfono:</label>
-                        <input class="form__grid--input" type="text" name="telefono" id="telefono"
+                        <input value="telefono" class="form__grid--input" type="text" name="telefono" id="telefono"
                             placeholder="Telefono">
                     </div>
                     <div>
@@ -211,7 +222,7 @@
                         <label for="promocion">QUIERO RECIBIR PROMOCIONES</label>
                         <input type="checkbox" id="promocion">
                     </div>
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <button id="submit" type="submit" class="btn btn-success">Enviar</button>
                 </div>
         </section>
     </main>
