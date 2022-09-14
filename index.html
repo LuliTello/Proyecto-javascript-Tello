@@ -136,7 +136,7 @@
                 </div>
                 </div>
                 <button id="comprar" type="button" class="btn btn-comprar">Comprar reserva</button>
-                <button id="Finalizar" type="button" class="btn btn-finalizar">Finalizar compra</button>
+                <a href="#pago" id="Finalizar" type="button" class="btn btn-finalizar">Finalizar compra</a>
             </form>
             <!--Texto agregado con JS donde figura la compra realizada-->
         </section>
@@ -168,23 +168,16 @@
         <section id="pago">
             <h2>Haga su pago aquí</h2>
             <form action="" class="pago">
-                <div class="form-check">
-                    <input value="debito" class="form-check" type="radio" name="flexRadioDefault" id="debito">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Debito
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input value="transferencia" class="form-check" type="radio" name="flexRadioDefault" id="transferencia" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Transferencia
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input value="credito" class="form-check" type="radio" name="flexRadioDefault" id="credito" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Tarjeta Crédito
-                    </label>
+                <div class="form-pago">
+                    <label class="labelPago" for="pago">Forma de pago</label>
+                        <select name="pago" id="formaPago">
+                            <option value="forma">Elija como pagar</option>
+                            <option value="debito">Débito</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="credito">Crédito</option>
+                            
+                        </select>
+                
                 </div>
                 <span id="pagoSeleccionado"></span>
             </form>

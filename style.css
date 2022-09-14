@@ -36,6 +36,14 @@ body{
     top: 18rem;
     left: 24rem;
 }
+/*ingreso*/
+.fallo__ingreso,.valido__ingreso{
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: end;
+    margin-right: 2rem;
+    padding-bottom: 1rem;
+}
 
 /*formulario*/
 
@@ -56,10 +64,33 @@ label{
     margin: 0.5rem 0;
 }
 
-.btn-comprar{
+.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-quitar,.btn-finalizar{
     margin: 1rem auto; 
+    padding: 0.5rem 2rem;
     background-color: rgb(250, 129, 250); 
     color: black; 
+    font-weight: bold;
+    border-radius: 0.3rem;
+    
+}
+/*reserva*/
+.reserva{
+    display: block;
+}
+.reservas{
+    display: flex;
+}
+.card-reserva{
+    margin: 1rem;
+    padding: 1rem;
+    border: 0.2rem solid rgb(114, 110, 110);
+    box-shadow: 1rem 0.5rem 0.2rem -0.2rem rgba(70, 69, 69, 0);
+    text-align: center;
+}
+.compra_span{
+    display: block;
+    font-size: 2rem;
+    font-style: italic;
 }
 /*servicios*/
 h2{
@@ -103,11 +134,13 @@ li{
 .card-title{
     font-weight: bold;
 }
-.card-link{
+.card__link{
     font-weight: bold;
     background-color: rgb(232, 162, 247);
     border-radius: 0.5rem;
     padding: 0.3rem 1rem;
+    color: #000;
+    text-decoration: none;
 }
 h4{
     font-size: 1.5rem;
@@ -119,6 +152,19 @@ h5{
 h6,.terminos__texto{
     font-weight: bold;
     margin-left: 2rem;
+}
+/*pago*/
+.pago{
+    display: flex;
+    justify-content: space-around;
+}
+.labelPago{
+    font-weight: bold;
+    font-size: larger;
+    margin-right: 1rem;
+}
+#formaPago{
+    width: 15rem;
 }
 /*contacto*/
 .form__grid{
@@ -164,7 +210,7 @@ textarea{
 .resultado__compra{
     margin: 1rem;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     font-style: italic;
 }
