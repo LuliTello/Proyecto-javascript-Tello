@@ -162,20 +162,31 @@ const agregar = document.querySelector('#agregar')
 agregar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
-        reservas.push(elemento);
+        agregarCarrito(elemento)
 
-        console.log(reservas);
-    let div = document.createElement('div')
-    div.innerHTML = `
+        
+   
+    contenedorReserva.innerHTML += `<div class="card-reserva">
     <h4> ${elemento.from} - ${elemento.to} </h4>
     <p> ${elemento.at} Hs</p>
-    <h5> $ ${elemento.price} /persona</h5>`
-     div.classList.add('card-reserva')   
+    <h5> $ ${elemento.price} /persona</h5>
+    <p>${elemento.cantidad}</p>
+    </div>`
        
-     contenedorReserva.append(div)
+       
     }
 })
-
+function agregarCarrito(elemento){
+    let existe = reservas.some(elem=>elem.from===elemento.from && elem.to ===elemento.to);
+    if(existe===false){
+        elemento.cantidad =1;
+        reservas.push(elemento);
+    }else{
+        let elemFind = reservas.find(elem=>elem.from ===elemento.from && elem.to===elemento.to)
+        elemFind.cantidad++;
+    }
+    console.log(reservas)
+}
 //eliminar una reserva
 const borrar = document.querySelector('#borrar')
 borrar.addEventListener('click', () => {
@@ -268,7 +279,7 @@ formulario.addEventListener('submit', (e)=>{
     console.log(email.value)
     console.log(telefono.value)
     console.log(textarea.value)
-    //mensaje de saludo al terminar
+    //mensaje de saludo
     const p = document.createElement('p');
     p.innerText = 'Muchas gracias por comprar con BulletTrain, que tenga un excelente viaje!';
     p.classList.add('saludo')
