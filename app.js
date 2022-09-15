@@ -184,6 +184,7 @@ function agregarCarrito(elemento){
     }else{
         let elemFind = reservas.find(elem=>elem.from ===elemento.from && elem.to===elemento.to)
         elemFind.cantidad++;
+        
     }
     console.log(reservas)
 }
@@ -204,8 +205,8 @@ const section = document.querySelector('.reserva')
 const comprar = document.querySelector('#comprar')
 comprar.addEventListener('click', ()=>{
     
-totalCompra = reservas.reduce((acc, el) => {
-    return acc + parseInt(el.price);
+totalCompra = reservas.reduce((acc, elemento) => {
+    return acc + parseInt(elemento.price*elemento.cantidad);
 }, 0);
 
 console.log(parseInt(totalCompra));
