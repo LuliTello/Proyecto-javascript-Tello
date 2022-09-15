@@ -268,7 +268,11 @@ formulario.addEventListener('submit', (e)=>{
     console.log(email.value)
     console.log(telefono.value)
     console.log(textarea.value)
-
+    //mensaje de saludo al terminar
+    const p = document.createElement('p');
+    p.innerText = 'Muchas gracias por comprar con BulletTrain, que tenga un excelente viaje!';
+    p.classList.add('saludo')
+    document.body.append(p)
 
 });
    
@@ -309,10 +313,7 @@ terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un 
 
 
 //mensaje de salida una vez hecha la compra
-const p = document.createElement('p');
-p.innerText = 'Muchas gracias por comprar con BulletTrain, que tenga un excelente viaje!';
-p.classList.add('saludo')
-document.body.append(p)
+
 
 
 
