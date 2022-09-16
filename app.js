@@ -130,7 +130,7 @@ selectHorario.addEventListener('change', () => {
     }
     elegirHorario();
 })
-//buscar pasaje con parametros seleccionados
+//buscar pasaje con parametros seleccionados usando filter
 
 const buscar = document.querySelector('#buscar')
 buscar.addEventListener('click', () => {
@@ -154,7 +154,7 @@ buscar.addEventListener('click', () => {
         formulario.appendChild(span)
     }
 })
-//agregar al carrito
+//evento para agregar la reserva con click
 
 const reservas = [];
 const contenedorReserva = document.querySelector('.reservas')
@@ -162,21 +162,12 @@ const agregar = document.querySelector('#agregar')
 agregar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
-        agregarCarrito(elemento)
-
+        agregarReserva(elemento)
         
-   
-    contenedorReserva.innerHTML += `<div class="card-reserva">
-    <h4> ${elemento.from} - ${elemento.to} </h4>
-    <p> ${elemento.at} Hs</p>
-    <h5> $ ${elemento.price} /persona</h5>
-    <p>${elemento.cantidad}</p>
-    </div>`
-       
-       
     }
 })
-function agregarCarrito(elemento){
+//funcion para agregar reserva al arreglo
+function agregarReserva(elemento){
     let existe = reservas.some(elem=>elem.from===elemento.from && elem.to ===elemento.to);
     if(existe===false){
         elemento.cantidad =1;
@@ -187,18 +178,36 @@ function agregarCarrito(elemento){
         
     }
     console.log(reservas)
+    mostrarReserva();
 }
-//eliminar una reserva
+//funcion mostrar reserva en formato cards
+function mostrarReserva(){
+    contenedorReserva.innerHTML="";
+    for(const elemento of reservas){
+        contenedorReserva.innerHTML += `<div class="card-reserva">
+        <h4> ${elemento.from} - ${elemento.to} </h4>
+        <p> ${elemento.at} Hs</p>
+        <h5> $ ${elemento.price} /persona</h5>
+        <p>${elemento.cantidad}</p>
+        </div>`    
+    }
+}
+//eliminar una reserva con evento click
 const borrar = document.querySelector('#borrar')
 borrar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
-        reservas.pop(elemento);
-
+        borrarCarrito(elemento);
     }
     console.log(reservas);
     })
 
+  function borrarCarrito(elemento){
+    const findIndex = reservas.indexOf(elemento);
+    reservas.splice(findIndex, 1);
+    mostrarReserva();
+
+  }  
 //sumar total de reserva para comprar
 
 const section = document.querySelector('.reserva')
@@ -236,35 +245,25 @@ formaPago.addEventListener('change', ()=>{
             totalPagar = totalCompra *1.21;
             document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;
             
+            //opcion de cuotas con credito
+            if(valorCuota === 'una'){
+                totalCuota= totalPagar/1;
+                document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
+            }else if(valorCuota === 'tres'){
+                totalCuota = (totalPagar*1.25)/3;
+                document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
+            }else{
+                totalCuota = (totalPagar*1.40)/6;
+                document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
+            }
+        }else{
+            document.querySelector('#pagoSeleccionado').innerText =`Seleccione una opcion valida`
         }
         
         }
         seleccionPago();
         console.log(parseInt(totalPagar));
 })
-//cuotas
-
-
-const cuotas = document.querySelector('#cuotas');
-cuotas.addEventListener('change', ()=>{
-    valorCuota = cuotas.value.toLowerCase();
-    console.log(valorCuota);
-    const seleccionCuotas = () => {
-        if(valorCuota === 'una'){
-            totalCuota= totalPagar/1;
-            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
-        }else if(valorCuota === 'tres'){
-            totalCuota = (totalPagar*1.25)/3;
-            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
-        }else{
-            totalCuota = (totalPagar*1.40)/6;
-            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
-        }
-    }
-    seleccionCuotas();
-    console.log(parseInt(totalCuota));
-})
-
 
 //formulario de contacto
 const formulario = document.querySelector('.form-contacto')
@@ -293,25 +292,25 @@ formulario.addEventListener('submit', (e)=>{
 const h2 = document.getElementById('h2');
 h2.innerText = 'Servicios y Tarifas';
 
-//genero li con la info del array en cards
-const ul = document.getElementById('lista')
+//genero cards con la info del array
+const divCard = document.querySelector('.card__flex')
 for (const viaje of tramos) {
-    let li = document.createElement('li')
+    let divServ = document.createElement('div')
 
-    li.innerHTML = `<div class = "card">
+    divServ.innerHTML = `<div class = "card">
     <h4> ${viaje.from} - ${viaje.to} </h4>
     <p> ${viaje.at} Hs</p>
     <h5> $ ${viaje.price} /persona</h5> 
     </div>`
-
-    ul.append(li)
+ divCard.append(divServ)
 }
 
 //agrego un h5 con terminos y condiciones
+const servicios = document.querySelector('.terminosTitulo');
 const h5 = document.createElement('h5');
 h5.innerText = '* Terminos y condiciones';
 h5.classList.add('terminos')
-ul.append(h5)
+servicios.append(h5)
 
 //en los parrafos existentes de terminos y condiciones agrego contenido
 let terminoClases = document.getElementsByClassName('terminos__texto')
@@ -323,8 +322,6 @@ terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir 
 terminoClases[1].innerText = 'Jubilados 15% de descuento.'
 terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
 
-
-//mensaje de salida una vez hecha la compra
 
 
 
