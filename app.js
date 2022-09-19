@@ -1,4 +1,4 @@
-//Tercera entrega complementaria
+//Segunda entrega Proyecto final
 
 //variables
 let usuario;
@@ -20,7 +20,6 @@ let pasajero = false;
 let adulto = 1;
 let jubilado = 0.85;
 let niño = 0;
-let pago = false;
 let cuota;
 let reservados;
 let totalCompra;
@@ -44,9 +43,7 @@ const tramos = [
     { from: 'Santa Fe', to: 'Cordoba', at: '23:00', price: 2500 },
 ]
 
-
-//Array vacio donde iran los pasajes comprados
-const carrito = [];
+//clase para crear objetos
 
 class destinoViaje {
     constructor(desde, hasta, precio) {
@@ -69,6 +66,12 @@ btnUsuario.addEventListener('click', () => {
 
     console.log(nombre);
     console.log(contraseña);
+
+    //almacenamos usuario 
+
+    localStorage.setItem('user', JSON.stringify(nombre));
+
+    //funcion para validar ingreso
     const ingresoUsuarioYContraseña = () => {
         if ((nombre === '' || (!isNaN(nombre))) || contraseña === '') {
             let p = document.createElement('p')
@@ -76,14 +79,18 @@ btnUsuario.addEventListener('click', () => {
             p.classList.add('fallo__ingreso')
             header.append(p);
         } else {
+            //accedemos a los datos usuario para saludar al ingresar
+
+            userAlmacenado = JSON.parse(localStorage.getItem('user'));
             let p = document.createElement('p')
-            p.innerText = nombre.toUpperCase() + ' ha ingresado correctamente, proceda a hacer su reserva'
+            p.innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`/*nombre.toUpperCase() + ' ha ingresado correctamente, proceda a hacer su reserva'*/
             p.classList.add('valido__ingreso')
             header.append(p);
         }
     }
-    ingresoUsuarioYContraseña();
+    ingresoUsuarioYContraseña(); 
 })
+
 // evento change para seleccionar origen
 const selectOrigen = document.querySelector('#origen')
 
@@ -99,6 +106,7 @@ selectOrigen.addEventListener('change', () => {
     }
     elegirOrigen();
 })
+
 // evento change para seleccionar destino
 const selectDestino = document.querySelector('#destino')
 selectDestino.addEventListener('change', () => {
@@ -154,14 +162,16 @@ buscar.addEventListener('click', () => {
         formulario.appendChild(span)
     }
 })
-//evento para agregar la reserva con click
 
-const reservas = [];
+//array vacio donde van las reservas
+const reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 const contenedorReserva = document.querySelector('.reservas')
+//evento para agregar la reserva con click
 const agregar = document.querySelector('#agregar')
 agregar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
+        //llamada a funcion agregar
         agregarReserva(elemento)
         
     }
@@ -178,6 +188,7 @@ function agregarReserva(elemento){
         
     }
     console.log(reservas)
+    //llamada a funcion mostrar
     mostrarReserva();
 }
 //funcion mostrar reserva en formato cards
@@ -191,24 +202,26 @@ function mostrarReserva(){
         <p>${elemento.cantidad}</p>
         </div>`    
     }
+    //almacenamiento de reservas con localStorage
+    localStorage.setItem('reservas', JSON.stringify(reservas));
 }
 //eliminar una reserva con evento click
 const borrar = document.querySelector('#borrar')
 borrar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
-        borrarCarrito(elemento);
+        borrarReserva(elemento);
     }
     console.log(reservas);
     })
 
-  function borrarCarrito(elemento){
+  function borrarReserva(elemento){
     const findIndex = reservas.indexOf(elemento);
     reservas.splice(findIndex, 1);
     mostrarReserva();
 
   }  
-//sumar total de reserva para comprar
+//sumar total de reserva para comprar usando reduce y evento click
 
 const section = document.querySelector('.reserva')
 const comprar = document.querySelector('#comprar')
@@ -226,7 +239,7 @@ span.classList.add('compra_span')
 section.append(span);
 })
 
-//forma de pago
+//forma de pago con evento change
 
 const formaPago = document.querySelector('#formaPago')
 formaPago.addEventListener('change', ()=>{
@@ -256,6 +269,7 @@ formaPago.addEventListener('change', ()=>{
                 totalCuota = (totalPagar*1.40)/6;
                 document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
             }
+            
         }else{
             document.querySelector('#pagoSeleccionado').innerText =`Seleccione una opcion valida`
         }
@@ -263,6 +277,14 @@ formaPago.addEventListener('change', ()=>{
         }
         seleccionPago();
         console.log(parseInt(totalPagar));
+
+        //mensaje despues de pagar
+        const pago = document.querySelector('#pago')
+        const p = document.createElement('p');
+        p.innerText = 'Gracias por realizar su pago, por favor complete el formulario de contacto para recibir nuestra informacion';
+        p.classList.add('saludo')
+        pago.append(p)
+    
 })
 
 //formulario de contacto
@@ -274,19 +296,29 @@ const nombre = document.querySelector('#nombre')
 formulario.addEventListener('submit', (e)=>{
     
     e.preventDefault();
-
+    
     console.log(nombre.value)
     console.log(email.value)
     console.log(telefono.value)
     console.log(textarea.value)
-    //mensaje de saludo
+
+    
+    //almacenar informacion de formulario
+    localStorage.setItem('nombre', JSON.stringify(nombre.value));
+
+    
+    //acceder a la informacion
+    let nombreAlmacenado = JSON.parse(localStorage.getItem('nombre'));
+
+    //mensaje de saludo una vez enviado el formulario con el nombre guardado en localStorage
     const p = document.createElement('p');
-    p.innerText = 'Muchas gracias por comprar con BulletTrain, que tenga un excelente viaje!';
+    p.innerText = `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`;
     p.classList.add('saludo')
     document.body.append(p)
-
 });
    
+//mensaje de saludo al terminar
+    
 
 //agrego h2
 const h2 = document.getElementById('h2');
