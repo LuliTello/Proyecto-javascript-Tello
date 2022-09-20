@@ -13,6 +13,30 @@ let pagar;
 let totalPagar;
 let valorCuota;
 
+//constantes
+const btnUsuario = document.querySelector('.btn__ingresar');
+const header = document.querySelector('header');
+const selectOrigen = document.querySelector('#origen');
+const selectDestino = document.querySelector('#destino');
+const selectHorario = document.querySelector('#horario')
+const buscar = document.querySelector('#buscar');
+const agregar = document.querySelector('#agregar')
+const borrar = document.querySelector('#borrar')
+const contenedorReserva = document.querySelector('.reservas');
+const cuotas = document.querySelector('#cuotas');
+const formularioContacto = document.querySelector('.form-contacto');
+const nombre = document.querySelector('#nombre');
+const email = document.querySelector('#email');
+const telefono = document.querySelector('#telefono');
+const textarea = document.querySelector('#consulta');
+const section = document.querySelector('.reserva');
+const comprar = document.querySelector('#comprar');
+const formaPago = document.querySelector('#formaPago');
+const formulario = document.querySelector('.formulario');
+const divCard = document.querySelector('.card__flex');
+
+
+//Arreglo con origen, destino, horario y precio
 const tramos = [
 
     { from: 'Buenos Aires', to: 'Cordoba', at: '13:00', price: 3500 },
@@ -31,7 +55,7 @@ const tramos = [
 
 //clase para crear objetos
 class destinoViaje {
-    constructor(desde, hasta, precio) {
+    constructor(desde, hasta, horario, precio) {
         this.from = desde.toUpperCase();
         this.to = hasta.toUpperCase();
         this.at = horario;
@@ -43,8 +67,7 @@ class destinoViaje {
 //DOM y Eventos
 
 // evento click para ingreso de usuario
-const btnUsuario = document.querySelector('.btn__ingresar');
-const header = document.querySelector('header');
+
 btnUsuario.addEventListener('click', () => {
     const nombre = document.querySelector('.nombreUsuario__input').value
     const contraseña = document.querySelector('.contraseñaUsuario__input').value
@@ -74,10 +97,8 @@ btnUsuario.addEventListener('click', () => {
         }
     }
     ingresoUsuarioYContraseña();
-
 })
 // evento change para seleccionar origen
-const selectOrigen = document.querySelector('#origen')
 
 selectOrigen.addEventListener('change', () => {
     from = selectOrigen.value
@@ -92,7 +113,7 @@ selectOrigen.addEventListener('change', () => {
     elegirOrigen();
 })
 // evento change para seleccionar destino
-const selectDestino = document.querySelector('#destino')
+
 selectDestino.addEventListener('change', () => {
     to = selectDestino.value;
     console.log(to);
@@ -109,7 +130,6 @@ selectDestino.addEventListener('change', () => {
 
 // evento change para seleccionar horario
 
-const selectHorario = document.querySelector('#horario')
 selectHorario.addEventListener('change', () => {
     horario = selectHorario.value;
     console.log(horario);
@@ -124,7 +144,6 @@ selectHorario.addEventListener('change', () => {
 })
 //buscar pasaje con parametros seleccionados usando filter
 
-const buscar = document.querySelector('#buscar')
 buscar.addEventListener('click', () => {
 
     const filtrarPasaje = (arr, from, to, horario) => {
@@ -136,21 +155,18 @@ buscar.addEventListener('click', () => {
         return filtrado
     }
     reservados = filtrarPasaje(tramos, from, to, horario);
-    console.log(reservados);
 
-    const formulario = document.querySelector('.formulario')
+    //mensaje luego de la busqueda agregado con DOM
     for (const resultado of reservados) {
-        let span = document.createElement('span')
-        span.innerText = `Resultado busqueda origen desde ${resultado.from} y destino ${resultado.to} en el horario de ${resultado.at} tiene un costo de $ ${resultado.price}`
-        span.classList.add('resultado__compra')
-        formulario.appendChild(span)
+        document.querySelector('.busqueda').innerHTML = `Resultado busqueda origen desde ${resultado.from} y destino ${resultado.to} en el horario de ${resultado.at} tiene un costo de $ ${resultado.price}`
+
     }
 })
-//evento para agregar la reserva con click
 
+//arreglo con los pasajes que se agregan y accedemos con getItem
 const reservas = JSON.parse(localStorage.getItem('reservas')) || [];
-const contenedorReserva = document.querySelector('.reservas')
-const agregar = document.querySelector('#agregar')
+
+//evento para agregar la reserva con click
 agregar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
@@ -159,6 +175,7 @@ agregar.addEventListener('click', () => {
 
     }
 })
+
 //funcion para agregar reserva al arreglo
 function agregarReserva(elemento) {
     let existe = reservas.some(elem => elem.from === elemento.from && elem.to === elemento.to);
@@ -170,7 +187,6 @@ function agregarReserva(elemento) {
         elemFind.cantidad++;
 
     }
-    console.log(reservas)
     //llamada a funcion mostrar
     mostrarReserva();
 }
@@ -189,16 +205,15 @@ function mostrarReserva() {
     localStorage.setItem('reservas', JSON.stringify(reservas));
 }
 //eliminar una reserva con evento click
-const borrar = document.querySelector('#borrar')
+
 borrar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
-        borrarCarrito(elemento);
+        borrarReserva(elemento);
     }
-    console.log(reservas);
 })
 
-function borrarCarrito(elemento) {
+function borrarReserva(elemento) {
     const findIndex = reservas.indexOf(elemento);
     reservas.splice(findIndex, 1);
     mostrarReserva();
@@ -206,92 +221,68 @@ function borrarCarrito(elemento) {
 }
 //sumar total de reserva para comprar usando reduce y evento click
 
-const section = document.querySelector('.reserva')
-const comprar = document.querySelector('#comprar')
 comprar.addEventListener('click', () => {
 
     totalCompra = reservas.reduce((acc, elemento) => {
         return acc + parseInt(elemento.price * elemento.cantidad);
     }, 0);
 
-    console.log(parseInt(totalCompra));
+    //mensaje del total agregado con DOM al HTML
+    document.querySelector('.compra_span').innerHTML = `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`;
 
-    let span = document.createElement('span')
-    span.innerText = `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`
-    span.classList.add('compra_span')
-    section.append(span);
 })
 
 //forma de pago con evento change
 
-const formaPago = document.querySelector('#formaPago')
 formaPago.addEventListener('change', () => {
 
     pagar = formaPago.value.toLowerCase()
-    console.log(pagar)
 
     const seleccionPago = () => {
-        if (pagar === 'debito') {
+        if (pagar === 'debito' || pagar === 'transferencia') {
             totalPagar = (totalCompra * 1.21) * 0.85;
             document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;
-        } else if (pagar === 'transferencia') {
-            totalPagar = (totalCompra * 1.21) * 0.85;
-            document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;
-        } else if (pagar === 'credito') {
+        } else {
             totalPagar = totalCompra * 1.21;
             document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;
 
-        } else {
-            document.querySelector('#pagoSeleccionado').innerText = `Seleccione una opcion valida`
-        }
+            //evento change para elegir cuotas
 
+            cuotas.addEventListener('change', () => {
+                valorCuota = cuotas.value.toLowerCase();
+                console.log(valorCuota);
+                //funcion para elegir cuotas
+                const seleccionCuotas = () => {
+                    if (valorCuota === 'una') {
+                        totalCuota = totalPagar / 1;
+                        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+                    } else if (valorCuota === 'tres') {
+                        totalCuota = (totalPagar * 1.25) / 3;
+                        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 3 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+                    } else {
+                        totalCuota = (totalPagar * 1.40) / 6;
+                        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 6 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+                    }
+                }
+                seleccionCuotas();   
+            })
+        }
     }
     seleccionPago();
-    console.log(parseInt(totalPagar));
-    // borrar almacenamiento una vez hecha la compra
+    // borrar almacenamiento una vez hecha la compra 
     localStorage.clear();
-})
-//evento change para elegor cuotas
-const cuotas = document.querySelector('#cuotas');
-cuotas.addEventListener('change', () => {
-    valorCuota = cuotas.value.toLowerCase();
-    console.log(valorCuota);
-    //funcion para elegir cuotas
-    const seleccionCuotas = () => {
-        if (valorCuota === 'una') {
-            totalCuota = totalPagar / 1;
-            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
-        } else if (valorCuota === 'tres') {
-            totalCuota = (totalPagar * 1.25) / 3;
-            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
-        } else {
-            totalCuota = (totalPagar * 1.40) / 6;
-            document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${totalCuota}`;
-        }
-    }
-    seleccionCuotas();
-    console.log(parseInt(totalCuota));
+
+
 })
 
 //formulario de contacto
-const formulario = document.querySelector('.form-contacto')
-const nombre = document.querySelector('#nombre')
-const email = document.querySelector('#email')
-const telefono = document.querySelector('#telefono')
-const textarea = document.querySelector('#consulta')
-formulario.addEventListener('submit', (e) => {
+
+formularioContacto.addEventListener('submit', (e) => {
 
     e.preventDefault();
 
-    console.log(nombre.value)
-    console.log(email.value)
-    console.log(telefono.value)
-    console.log(textarea.value)
-
-
     //almacenar informacion de formulario
     localStorage.setItem('nombre', JSON.stringify(nombre.value));
-
 
     //acceder a la informacion
     let nombreAlmacenado = JSON.parse(localStorage.getItem('nombre'));
@@ -303,12 +294,8 @@ formulario.addEventListener('submit', (e) => {
     document.body.append(p)
 });
 
-//agrego h2
-const h2 = document.getElementById('h2');
-h2.innerText = 'Servicios y Tarifas';
-
 //genero cards con la info del array
-const divCard = document.querySelector('.card__flex')
+
 for (const viaje of tramos) {
     let divServ = document.createElement('div')
 
@@ -319,13 +306,6 @@ for (const viaje of tramos) {
     </div>`
     divCard.append(divServ)
 }
-
-//agrego un h5 con terminos y condiciones
-const servicios = document.querySelector('.terminosTitulo');
-const h5 = document.createElement('h5');
-h5.innerText = '* Terminos y condiciones';
-h5.classList.add('terminos')
-servicios.append(h5)
 
 //en los parrafos existentes de terminos y condiciones agrego contenido
 let terminoClases = document.getElementsByClassName('terminos__texto')

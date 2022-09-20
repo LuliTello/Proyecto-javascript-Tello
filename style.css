@@ -73,6 +73,10 @@ label{
     border-radius: 0.3rem;
     
 }
+.busqueda{
+    font-weight: bold;
+    margin-left: 2rem;
+}
 /*reserva*/
 .reserva{
     display: block;
