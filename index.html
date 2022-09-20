@@ -44,15 +44,14 @@
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Registrarse
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><label for="nombreUsuario" class="nombreUsuario">Nombre Usuario</label></li>
-                        <li> <input class="nombreUsuario__input" type="text" id="nombreUsuario" name="nombre" value="">
-                        </li>
-                        <li><label for="contraseñaUsuario" class="contraseñaUsuario">Contraseña</label></li>
-                        <li> <input class="contraseñaUsuario__input" type="password" id="contraseñaUsuario"
-                                name="contraseña" value=""></li>
-                        <button type="button" class="btn__ingresar">Ingresar</button>
-                    </ul>
+                    <form action="" id="form-ingreso" class="dropdown-menu">
+                        <label for="nombreUsuario" class="nombreUsuario">Nombre Usuario</label> 
+                        <input class="nombreUsuario__input" type="text" id="nombreUsuario" name="nombre">
+                        <label for="contraseñaUsuario" class="contraseñaUsuario">Contraseña</label>
+                        <input class="contraseñaUsuario__input" type="password" id="contraseñaUsuario"
+                        name="contraseña">
+                        <button type="submit" class="btn__ingresar">Ingresar</button>
+                    </form>
                 </div>
             </div>
         </nav>

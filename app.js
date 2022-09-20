@@ -67,21 +67,23 @@ class destinoViaje {
 //DOM y Eventos
 
 // evento click para ingreso de usuario
+const formularioIngreso = document.querySelector('#form-ingreso')
+const nombreUsuario = document.querySelector('.nombreUsuario__input')
+const contraseñaUsuario = document.querySelector('.contraseñaUsuario__input')
+formularioIngreso.addEventListener('submit', (e) => {
 
-btnUsuario.addEventListener('click', () => {
-    const nombre = document.querySelector('.nombreUsuario__input').value
-    const contraseña = document.querySelector('.contraseñaUsuario__input').value
-
-    console.log(nombre);
-    console.log(contraseña);
+    e.preventDefault();
+   
+    console.log(nombreUsuario.value);
+    console.log(contraseñaUsuario.value);
 
     //almacenamos usuario 
 
-    localStorage.setItem('user', JSON.stringify(nombre));
+    localStorage.setItem('user', JSON.stringify(nombreUsuario.value));
 
     //funcion para validar ingreso
     const ingresoUsuarioYContraseña = () => {
-        if ((nombre === '' || (!isNaN(nombre))) || contraseña === '') {
+        if ((nombreUsuario === '' || (!isNaN(nombreUsuario))) || contraseñaUsuario === '') {
             let p = document.createElement('p')
             p.innerText = 'Ingrese Usuario y contraseñas validas'
             p.classList.add('fallo__ingreso')
@@ -91,13 +93,14 @@ btnUsuario.addEventListener('click', () => {
 
             userAlmacenado = JSON.parse(localStorage.getItem('user'));
             let p = document.createElement('p')
-            p.innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`/*nombre.toUpperCase() + ' ha ingresado correctamente, proceda a hacer su reserva'*/
+            p.innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`
             p.classList.add('valido__ingreso')
             header.append(p);
         }
     }
     ingresoUsuarioYContraseña();
 })
+
 // evento change para seleccionar origen
 
 selectOrigen.addEventListener('change', () => {
