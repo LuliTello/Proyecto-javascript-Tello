@@ -14,8 +14,9 @@ let totalPagar;
 let valorCuota;
 
 //constantes
-const btnUsuario = document.querySelector('.btn__ingresar');
-const header = document.querySelector('header');
+const formularioIngreso = document.querySelector('#form-ingreso')
+const nombreUsuario = document.querySelector('#nombreUsuario')
+const contraseñaUsuario = document.querySelector('#contraseñaUsuario')
 const selectOrigen = document.querySelector('#origen');
 const selectDestino = document.querySelector('#destino');
 const selectHorario = document.querySelector('#horario')
@@ -67,9 +68,7 @@ class destinoViaje {
 //DOM y Eventos
 
 // evento click para ingreso de usuario
-const formularioIngreso = document.querySelector('#form-ingreso')
-const nombreUsuario = document.querySelector('.nombreUsuario__input')
-const contraseñaUsuario = document.querySelector('.contraseñaUsuario__input')
+
 formularioIngreso.addEventListener('submit', (e) => {
 
     e.preventDefault();
@@ -83,19 +82,15 @@ formularioIngreso.addEventListener('submit', (e) => {
 
     //funcion para validar ingreso
     const ingresoUsuarioYContraseña = () => {
-        if ((nombreUsuario === '' || (!isNaN(nombreUsuario))) || contraseñaUsuario === '') {
-            let p = document.createElement('p')
-            p.innerText = 'Ingrese Usuario y contraseñas validas'
-            p.classList.add('fallo__ingreso')
-            header.append(p);
+        if (nombreUsuario.value === '' || (!isNaN(nombreUsuario.value)) || contraseñaUsuario.value === '') {
+           document.querySelector('.validarIngreso').innerText = 'Ingrese Usuario y contraseñas validas'
         } else {
+            
             //accedemos a los datos usuario para saludar al ingresar
 
             userAlmacenado = JSON.parse(localStorage.getItem('user'));
-            let p = document.createElement('p')
-            p.innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`
-            p.classList.add('valido__ingreso')
-            header.append(p);
+            document.querySelector('.validarIngreso').innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`
+
         }
     }
     ingresoUsuarioYContraseña();
@@ -272,10 +267,9 @@ formaPago.addEventListener('change', () => {
         }
     }
     seleccionPago();
+    
     // borrar almacenamiento una vez hecha la compra 
     localStorage.clear();
-
-
 })
 
 //formulario de contacto

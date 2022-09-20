@@ -37,7 +37,7 @@ body{
     left: 24rem;
 }
 /*ingreso*/
-.fallo__ingreso,.valido__ingreso{
+.validarIngreso{
     font-size: 1rem;
     font-weight: bold;
     text-align: end;
