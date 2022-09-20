@@ -64,7 +64,7 @@ label{
     margin: 0.5rem 0;
 }
 
-.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-quitar,.btn-finalizar,.btn-borrar{
+.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-finalizar,.btn-borrar{
     margin: 1rem auto; 
     padding: 0.5rem 2rem;
     background-color: rgb(250, 129, 250); 
@@ -93,6 +93,7 @@ label{
 }
 .compra_span{
     display: block;
+    margin: 1rem;
     font-size: 2rem;
     font-style: italic;
 }
@@ -134,9 +135,7 @@ h3{
     width: 100%;
     height: 10rem;
 }
-/*li{
-    list-style: none;
-}*/
+
 .card-title{
     font-weight: bold;
 }
@@ -257,14 +256,17 @@ textarea{
         font-size: 2rem;
     }
    
-    .btn-comprar{
-        margin-left: 16rem;
+    .btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-quitar,.btn-finalizar,.btn-borrar{
+        margin-left: 2rem;
     }
 }
 @media(max-width:480px){
     .inicio__titulo{
         font-size: 1.5rem;
         left: 10rem;
+    }
+    .row{
+        text-align: center;
     }
     .radio{
         display: flex;
@@ -274,9 +276,20 @@ textarea{
     .radio__button{
        height: 1.5rem;
     }
-    
-    .btn-comprar{
-        margin-left: 7rem;
+    #origenSeleccionado,#destinoSeleccionado,#horarioSeleccionado{
+        display: block;
+    }
+    .buscar{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+    .btn-buscar,.btn-agregar,.btn-borrar{
+        display: inline;
+    }
+    .btn-comprar,.btn__ingresar,.btn-finalizar{
+        display: block;
     }
     .card__flex{
         flex-direction: column;
