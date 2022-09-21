@@ -33,6 +33,7 @@ const textarea = document.querySelector('#consulta');
 const section = document.querySelector('.reserva');
 const comprar = document.querySelector('#comprar');
 const formaPago = document.querySelector('#formaPago');
+const formCuota = document.querySelector('.form-cuota');
 const formulario = document.querySelector('.formulario');
 const divCard = document.querySelector('.card__flex');
 
@@ -61,7 +62,6 @@ class destinoViaje {
         this.to = hasta.toUpperCase();
         this.at = horario;
         this.price = precio;
-
     }
 }
 
@@ -82,6 +82,7 @@ formularioIngreso.addEventListener('submit', (e) => {
 
     //funcion para validar ingreso
     const ingresoUsuarioYContraseña = () => {
+
         if (nombreUsuario.value === '' || (!isNaN(nombreUsuario.value)) || contraseñaUsuario.value === '') {
            document.querySelector('.validarIngreso').innerText = 'Ingrese Usuario y contraseñas validas'
         } else {
@@ -102,11 +103,10 @@ selectOrigen.addEventListener('change', () => {
     from = selectOrigen.value
     console.log(from);
     const elegirOrigen = () => {
-        if ((from === 'buenos aires' || from === 'cordoba' || from === 'santa fe') && from !== destino) {
-            document.querySelector('#origenSeleccionado').innerText = `Usted ha seleccionado origen ${from}`;
-        } else {
-            document.querySelector('#origenSeleccionado').innerText = 'Debe seleccionar un Origen para continuar'
-        }
+
+        //Operador ternario
+        (from === 'buenos aires' || from === 'cordoba' || from === 'santa fe') && from !== destino ?  document.querySelector('#origenSeleccionado').innerText = `Usted ha seleccionado origen ${from}` : document.querySelector('#origenSeleccionado').innerText = 'Debe seleccionar un Origen para continuar';
+
     }
     elegirOrigen();
 })
@@ -116,14 +116,13 @@ selectDestino.addEventListener('change', () => {
     to = selectDestino.value;
     console.log(to);
     const elegirDestino = () => {
-        if ((to === 'buenos aires' || to === 'cordoba' || to === 'santa fe') && to !== from) {
-            document.querySelector('#destinoSeleccionado').innerText = `Usted ha seleccionado origen ${to}`;
-        } else {
-            document.querySelector('#destinoSeleccionado').innerText = 'Debe seleccionar un destino para continuar'
-        }
+
+        //operador ternario
+
+        (to === 'buenos aires' || to === 'cordoba' || to === 'santa fe') && to !== from ? document.querySelector('#destinoSeleccionado').innerText = `Usted ha seleccionado destino ${to}` : document.querySelector('#destinoSeleccionado').innerText = 'Debe seleccionar un destino para continuar';
+        
     }
     elegirDestino();
-
 })
 
 // evento change para seleccionar horario
@@ -132,11 +131,11 @@ selectHorario.addEventListener('change', () => {
     horario = selectHorario.value;
     console.log(horario);
     const elegirHorario = () => {
-        if (horario === '13:00' || horario === '23:00') {
-            document.querySelector('#horarioSeleccionado').innerText = `Usted eligió el horario ${horario}`;
-        } else {
-            document.querySelector('#horarioSeleccionado').innerText = 'Debe seleccionar un horario para continuar'
-        }
+
+        //operador ternario
+
+        horario === '13:00' || horario === '23:00' ? document.querySelector('#horarioSeleccionado').innerText = `Usted eligió el horario ${horario}` : document.querySelector('#horarioSeleccionado').innerText = 'Debe seleccionar un horario para continuar';
+    
     }
     elegirHorario();
 })
@@ -162,6 +161,8 @@ buscar.addEventListener('click', () => {
 })
 
 //arreglo con los pasajes que se agregan y accedemos con getItem
+
+//operador Logico OR (||)
 const reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 
 //evento para agregar la reserva con click
@@ -182,6 +183,7 @@ function agregarReserva(elemento) {
         reservas.push(elemento);
     } else {
         let elemFind = reservas.find(elem => elem.from === elemento.from && elem.to === elemento.to)
+       //operador ++
         elemFind.cantidad++;
 
     }
@@ -236,42 +238,47 @@ formaPago.addEventListener('change', () => {
 
     pagar = formaPago.value.toLowerCase()
 
-    const seleccionPago = () => {
-        if (pagar === 'debito' || pagar === 'transferencia') {
-            totalPagar = (totalCompra * 1.21) * 0.85;
-            document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;
-        } else {
-            totalPagar = totalCompra * 1.21;
-            document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;
-
-            //evento change para elegir cuotas
-
-            cuotas.addEventListener('change', () => {
-                valorCuota = cuotas.value.toLowerCase();
-                console.log(valorCuota);
-                //funcion para elegir cuotas
-                const seleccionCuotas = () => {
-                    if (valorCuota === 'una') {
-                        totalCuota = totalPagar / 1;
-                        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
-                    } else if (valorCuota === 'tres') {
-                        totalCuota = (totalPagar * 1.25) / 3;
-                        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 3 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
-                    } else {
-                        totalCuota = (totalPagar * 1.40) / 6;
-                        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 6 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
-                    }
-                }
-                seleccionCuotas();   
-            })
-        }
-    }
     seleccionPago();
-    
-    // borrar almacenamiento una vez hecha la compra 
-    localStorage.clear();
-})
 
+})
+//funcion para seleccionar forma de pago
+const seleccionPago = () => {
+    if (pagar === 'debito' || pagar === 'transferencia') {
+        formCuota.classList.add('oculta')
+        totalPagar = (totalCompra * 1.21) * 0.85;
+        document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;
+    } else {
+        formCuota.classList.remove('oculta')
+        totalPagar = totalCompra * 1.21;
+        document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;
+
+        //evento change para elegir cuotas
+
+        cuotas.addEventListener('change', () => {
+            valorCuota = cuotas.value.toLowerCase();
+            console.log(valorCuota);
+
+            seleccionCuotas();
+
+            // borrar almacenamiento una vez hecha la compra 
+            localStorage.clear();
+
+        })
+    }
+}
+//funcion para seleccionar cuotas
+const seleccionCuotas = () => {
+    if (valorCuota === 'una') {
+        totalCuota = totalPagar / 1;
+        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+    } else if (valorCuota === 'tres') {
+        totalCuota = (totalPagar * 1.25) / 3;
+        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 3 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+    } else {
+        totalCuota = (totalPagar * 1.40) / 6;
+        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 6 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+    }
+}
 //formulario de contacto
 
 formularioContacto.addEventListener('submit', (e) => {

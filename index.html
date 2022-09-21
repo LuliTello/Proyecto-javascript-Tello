@@ -45,11 +45,11 @@
                         Registrarse
                     </button>
                     <form action="" id="form-ingreso" class="dropdown-menu">
-                        <label for="nombreUsuario" class="nombreUsuario">Nombre Usuario</label> 
+                        <label for="nombreUsuario" class="nombreUsuario">Nombre Usuario</label>
                         <input class="nombreUsuario__input" type="text" id="nombreUsuario" name="nombre">
                         <label for="contraseñaUsuario" class="contraseñaUsuario">Contraseña</label>
                         <input class="contraseñaUsuario__input" type="password" id="contraseñaUsuario"
-                        name="contraseña">
+                            name="contraseña">
                         <button type="submit" class="btn__ingresar">Ingresar</button>
                     </form>
                 </div>
@@ -122,19 +122,19 @@
                 </div>
                 <button id="comprar" type="button" class="btn btn-comprar">Comprar reserva</button>
                 <a href="#pago" id="Finalizar" type="button" class="btn btn-finalizar">Finalizar compra</a>
-            
+
             </form>
             <!--Texto agregado con DOM con las busquedas-->
             <span class="busqueda"></span>
-            
+
         </section>
 
         <h2 id="reservas">Reservas</h2>
         <!--Texto agregado con Js con las reservas y cards mostrando los resultados-->
         <section class="reserva">
             <div class="reservas"></div>
-            <!--Texto mostrando el total de la compra agregado con DOM-->    
-        <span class="compra_span"></span>
+            <!--Texto mostrando el total de la compra agregado con DOM-->
+            <span class="compra_span"></span>
         </section>
         <!--cards servicios-->
         <section class="servicios" id="servicios">
@@ -144,7 +144,7 @@
             <div class="card__servicios">
                 <h3>Conozca y elija su servicio</h3>
                 <div class="card__flex">
-                    
+
                     <!--Cards creadas con JS a partir del array-->
                 </div>
                 <div class="terminosTitulo">
@@ -170,18 +170,18 @@
                     </select>
                     <span id="pagoSeleccionado"></span>
                 </div>
-                <div class="form-cuota">
-
+            </form>
+            <form class="form-cuota" action="">
+                <div>
                     <label class="labelCuotas" for="cuotas">Cantidad Cuotas</label>
                     <select name="cuotas" id="cuotas">
                         <option value="elijaCuota">Elija sus cuotas</option>
                         <option value="una">1 Sin interés</option>
                         <option value="tres">3 con 25% de interés</option>
                         <option value="seis">6 con 40% de interés</option>
-
                     </select>
+                    <span id="cuotaSeleccionada"></span>
                 </div>
-                <span id="cuotaSeleccionada"></span>
             </form>
         </section>
         <!--contacto con formulario-->
@@ -197,7 +197,7 @@
                     </div>
                     <div>
                         <label for="email">Email:</label>
-                        <input  class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
+                        <input class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
                     </div>
                     <div>
                         <label for="telefono">Teléfono:</label>

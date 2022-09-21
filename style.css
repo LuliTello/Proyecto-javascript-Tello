@@ -172,6 +172,9 @@ h6,.terminos__texto{
 #formaPago,#cuotas{
     width: 15rem;
 }
+.oculta{
+    display: none;
+}
 #pagoSeleccionado,#cuotaSeleccionada{
     display: block;
     text-align: center;
