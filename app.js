@@ -135,7 +135,6 @@ selectHorario.addEventListener('change', () => {
         //operador ternario
 
         horario === '13:00' || horario === '23:00' ? document.querySelector('#horarioSeleccionado').innerText = `Usted eligió el horario ${horario}` : document.querySelector('#horarioSeleccionado').innerText = 'Debe seleccionar un horario para continuar';
-    
     }
     elegirHorario();
 })
@@ -170,8 +169,7 @@ agregar.addEventListener('click', () => {
 
     for (const elemento of reservados) {
         //llamada a funcion agregar
-        agregarReserva(elemento)
-
+        agregarReserva(elemento);
     }
 })
 
@@ -185,7 +183,6 @@ function agregarReserva(elemento) {
         let elemFind = reservas.find(elem => elem.from === elemento.from && elem.to === elemento.to)
        //operador ++
         elemFind.cantidad++;
-
     }
     //llamada a funcion mostrar
     mostrarReserva();
@@ -195,7 +192,7 @@ function mostrarReserva() {
     
     contenedorReserva.innerHTML = "";
     for (const elemento of reservas) {
-        
+
         //destructuring de objeto
         let {from, to, at, price, cantidad} = elemento;
 
@@ -216,7 +213,7 @@ borrar.addEventListener('click', () => {
     for (const elemento of reservados) {
         borrarReserva(elemento);
     }
-})
+});
 
 function borrarReserva(elemento) {
     const findIndex = reservas.indexOf(elemento);
@@ -235,7 +232,7 @@ comprar.addEventListener('click', () => {
     //mensaje del total agregado con DOM al HTML
     document.querySelector('.compra_span').innerHTML = `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`;
 
-})
+});
 
 //forma de pago con evento change
 
@@ -245,7 +242,8 @@ formaPago.addEventListener('change', () => {
 
     seleccionPago();
 
-})
+});
+
 //funcion para seleccionar forma de pago
 const seleccionPago = () => {
     if (pagar === 'debito' || pagar === 'transferencia') {
