@@ -192,13 +192,18 @@ function agregarReserva(elemento) {
 }
 //funcion mostrar reserva en formato cards
 function mostrarReserva() {
+    
     contenedorReserva.innerHTML = "";
     for (const elemento of reservas) {
+        
+        //destructuring de objeto
+        let {from, to, at, price, cantidad} = elemento;
+
         contenedorReserva.innerHTML += `<div class="card-reserva">
-        <h4> ${elemento.from} - ${elemento.to} </h4>
-        <p> ${elemento.at} Hs</p>
-        <h5> $ ${elemento.price} /persona</h5>
-        <p>${elemento.cantidad}</p>
+        <h4> ${from} - ${to} </h4>
+        <p> ${at} Hs</p>
+        <h5> $ ${price} /persona</h5>
+        <p>${cantidad}</p>
         </div>`
     }
     //almacenamiento de reservas con localStorage
