@@ -32,6 +32,7 @@ const telefono = document.querySelector('#telefono');
 const textarea = document.querySelector('#consulta');
 const section = document.querySelector('.reserva');
 const comprar = document.querySelector('#comprar');
+const seccionPago = document.querySelector('#pago');
 const formaPago = document.querySelector('#formaPago');
 const formCuota = document.querySelector('.form-cuota');
 const formulario = document.querySelector('.formulario');
@@ -72,7 +73,7 @@ class destinoViaje {
 formularioIngreso.addEventListener('submit', (e) => {
 
     e.preventDefault();
-   
+
     console.log(nombreUsuario.value);
     console.log(contraseñaUsuario.value);
 
@@ -84,28 +85,62 @@ formularioIngreso.addEventListener('submit', (e) => {
     const ingresoUsuarioYContraseña = () => {
 
         if (nombreUsuario.value === '' || (!isNaN(nombreUsuario.value)) || contraseñaUsuario.value === '') {
-           document.querySelector('.validarIngreso').innerText = 'Ingrese Usuario y contraseñas validas'
+           
+           //mensaje libreria ingreso invalido
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingrese Usuario y contraseñas validas!',
+                /*footer: '<a href="">Why do I have this issue?</a>'*/
+            })
+            /*document.querySelector('.validarIngreso').innerText = 'Ingrese Usuario y contraseñas validas'*/
         } else {
-            
+
             //accedemos a los datos usuario para saludar al ingresar
 
             userAlmacenado = JSON.parse(localStorage.getItem('user'));
-            document.querySelector('.validarIngreso').innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`
+            //mensaje libreria ingreso valido
+            Swal.fire(
+                'Ingreso válido',
+                `${userAlmacenado} proceda a hacer su reserva`,
+                'success'
+            )
+            /*document.querySelector('.validarIngreso').innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`*/
 
         }
     }
     ingresoUsuarioYContraseña();
 })
 
-// evento change para seleccionar origen
+//evento click cambio de modo
+let btnDarkMode = document.querySelector('.darkMode')
+let modoOscuro = JSON.parse(localStorage.getItem('modo')) || true;
+btnDarkMode.addEventListener('click',()=>{
+    console.log('click')
+    modoOscuro = !modoOscuro;
+    cambiarDark();
 
+    localStorage.setItem('modo', JSON.stringify(modoOscuro))
+})
+
+//funcion para cambiar a darkmode
+function cambiarDark(){
+    if(modoOscuro === false){
+        document.body.style.backgroundColor = 'black';
+        document.body.style.color = 'grey';
+    } else if(modoOscuro === true){
+        document.body.style.backgroundColor = 'white'
+    }
+}
+
+// evento change para seleccionar origen
 selectOrigen.addEventListener('change', () => {
     from = selectOrigen.value
     console.log(from);
     const elegirOrigen = () => {
 
         //Operador ternario
-        (from === 'buenos aires' || from === 'cordoba' || from === 'santa fe') && from !== destino ?  document.querySelector('#origenSeleccionado').innerText = `Usted ha seleccionado origen ${from}` : document.querySelector('#origenSeleccionado').innerText = 'Debe seleccionar un Origen para continuar';
+        (from === 'buenos aires' || from === 'cordoba' || from === 'santa fe') && from !== destino ? document.querySelector('#origenSeleccionado').innerText = `Usted ha seleccionado origen ${from}` : document.querySelector('#origenSeleccionado').innerText = 'Debe seleccionar un Origen para continuar';
 
     }
     elegirOrigen();
@@ -120,7 +155,7 @@ selectDestino.addEventListener('change', () => {
         //operador ternario
 
         (to === 'buenos aires' || to === 'cordoba' || to === 'santa fe') && to !== from ? document.querySelector('#destinoSeleccionado').innerText = `Usted ha seleccionado destino ${to}` : document.querySelector('#destinoSeleccionado').innerText = 'Debe seleccionar un destino para continuar';
-        
+
     }
     elegirDestino();
 })
@@ -181,7 +216,7 @@ function agregarReserva(elemento) {
         reservas.push(elemento);
     } else {
         let elemFind = reservas.find(elem => elem.from === elemento.from && elem.to === elemento.to)
-       //operador ++
+        //operador ++
         elemFind.cantidad++;
     }
     //llamada a funcion mostrar
@@ -189,12 +224,12 @@ function agregarReserva(elemento) {
 }
 //funcion mostrar reserva en formato cards
 function mostrarReserva() {
-    
+
     contenedorReserva.innerHTML = "";
     for (const elemento of reservas) {
 
         //destructuring de objeto
-        let {from, to, at, price, cantidad} = elemento;
+        let { from, to, at, price, cantidad } = elemento;
 
         contenedorReserva.innerHTML += `<div class="card-reserva">
         <h4> ${from} - ${to} </h4>
@@ -229,9 +264,27 @@ comprar.addEventListener('click', () => {
         return acc + parseInt(elemento.price * elemento.cantidad);
     }, 0);
 
-    //mensaje del total agregado con DOM al HTML
-    document.querySelector('.compra_span').innerHTML = `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`;
+    //mensaje libreria seguir con el pago
+    
+    Swal.fire({
+        title: 'Quiere seguir con la compra?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Si, quiero',
+        denyButtonText: `No gracias`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Excelente!', `Su total es de $ ${totalCompra} + IVA, finalice seleccionando forma de pago`, 'success')
+        } else if (result.isDenied) {
+          Swal.fire('Compra cancelada', `${userAlmacenado} esperamos que pronto viaje con nosotros`, 'error')
+        }
+      })
 
+    /*document.querySelector('.compra_span').innerHTML = `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`;*/
+      
+    //clase que muestra l aseccion pago una vez hecha la compra
+    seccionPago.classList.remove('oculta');
 });
 
 //forma de pago con evento change
@@ -249,11 +302,22 @@ const seleccionPago = () => {
     if (pagar === 'debito' || pagar === 'transferencia') {
         formCuota.classList.add('oculta')
         totalPagar = (totalCompra * 1.21) * 0.85;
-        document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;
+        /*document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;*/
+        
+        //mensaje libreria pago realizado con exito
+        
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Realizó su pago con exito',
+            text:`Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`,
+            showConfirmButton: false,
+            timer: 4500
+        })
     } else {
         formCuota.classList.remove('oculta')
         totalPagar = totalCompra * 1.21;
-        document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;
+        /*document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;*/
 
         //evento change para elegir cuotas
 
@@ -262,6 +326,15 @@ const seleccionPago = () => {
             console.log(valorCuota);
 
             seleccionCuotas();
+            //mensaje libreria pago realizado con exito
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Realizó su pago con exito',
+                text:`Usted eligió la forma de pago ${pagar} en cantidad de cuotas ${valorCuota}, monto de cuota a pagar ${parseInt(totalCuota)} Final`,
+                showConfirmButton: false,
+                timer: 5500
+            })
 
             // borrar almacenamiento una vez hecha la compra 
             localStorage.clear();
@@ -273,13 +346,13 @@ const seleccionPago = () => {
 const seleccionCuotas = () => {
     if (valorCuota === 'una') {
         totalCuota = totalPagar / 1;
-        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+        /*document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;*/
     } else if (valorCuota === 'tres') {
         totalCuota = (totalPagar * 1.25) / 3;
-        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 3 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+        /*document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 3 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;*/
     } else {
         totalCuota = (totalPagar * 1.40) / 6;
-        document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 6 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;
+        /*document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 6 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;*/
     }
 }
 //formulario de contacto
@@ -293,16 +366,25 @@ formularioContacto.addEventListener('submit', (e) => {
 
     //acceder a la informacion
     let nombreAlmacenado = JSON.parse(localStorage.getItem('nombre'));
+//libreria sweet alert mensaje envio formulario
+Swal.fire({
+    position: 'bottom',
+    icon: 'success',
+    title: `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`,
+    showConfirmButton: false,
+    timer: 3000
+  })
 
     //mensaje de saludo una vez enviado el formulario con el nombre guardado en localStorage
-    const p = document.createElement('p');
+    /*const p = document.createElement('p');
     p.innerText = `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`;
     p.classList.add('saludo')
-    document.body.append(p)
+    document.body.append(p);*/
+
 });
 
 //genero cards con la info del array
-
+let servicios = [];
 for (const viaje of tramos) {
     let divServ = document.createElement('div')
 
@@ -318,12 +400,12 @@ for (const viaje of tramos) {
 let terminoClases = document.getElementsByClassName('terminos__texto')
 for (const termino of terminoClases) {
 
-}
+
 
 terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.'
 terminoClases[1].innerText = 'Jubilados 15% de descuento.'
 terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
-
+}
 
 
 

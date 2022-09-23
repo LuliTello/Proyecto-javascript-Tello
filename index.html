@@ -54,8 +54,10 @@
                     </form>
                 </div>
             </div>
+            <button type="button" class="darkMode">Mode</button>
         </nav>
         <p class="validarIngreso"></p>
+        
     </header>
     <main>
         <!--imagen inicio-->
@@ -157,7 +159,7 @@
             </div>
         </section>
         <!--seccion para realizar el pago con JS-->
-        <section id="pago">
+        <section id="pago" class="oculta">
             <h2>Haga su pago aquí</h2>
             <form action="" class="pago">
                 <div class="form-pago">
@@ -172,7 +174,7 @@
                 </div>
             </form>
             <form class="form-cuota" action="">
-                <div>
+                <div class="divCuotas">
                     <label class="labelCuotas" for="cuotas">Cantidad Cuotas</label>
                     <select name="cuotas" id="cuotas">
                         <option value="elijaCuota">Elija sus cuotas</option>
@@ -236,6 +238,8 @@
         </div>
     </footer>
     <!--Texto realizado con JS para saludar-->
+    <!--sweet alert-->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>

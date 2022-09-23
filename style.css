@@ -44,7 +44,10 @@ body{
     margin-right: 2rem;
     padding-bottom: 1rem;
 }
-
+.darkMode{
+    border-radius: 0.5rem;
+    padding: 0.3rem 1rem;
+}
 /*formulario*/
 
 .form{
@@ -181,16 +184,14 @@ h6,.terminos__texto{
     font-size:x-large;
     font-style: italic;
 }
-.pago{
+.pago,.form-cuota{
     display: flex;
     flex-direction: column;
 }
-.form-pago{
+.form-pago,.divCuotas{
     margin: 1rem auto;
 }
-.form-cuota{
-    margin: 1rem auto;
-}
+
 /*contacto*/
 .form__grid{
     display: grid;
