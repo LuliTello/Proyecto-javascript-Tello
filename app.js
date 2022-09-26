@@ -291,6 +291,28 @@ comprar.addEventListener('click', () => {
     seccionPago.classList.remove('oculta');
 });
 
+//genero cards con la info del array
+let servicios = [];
+for (const viaje of tramos) {
+    let divServ = document.createElement('div')
+
+    divServ.innerHTML = `<div class = "card">
+    <h4> ${viaje.from} - ${viaje.to} </h4>
+    <p> ${viaje.at} Hs</p>
+    <h5> $ ${viaje.price} /persona</h5> 
+    </div>`
+    divCard.append(divServ)
+}
+
+//en los parrafos existentes de terminos y condiciones agrego contenido
+let terminoClases = document.getElementsByClassName('terminos__texto')
+for (const termino of terminoClases) {
+
+terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.'
+terminoClases[1].innerText = 'Jubilados 15% de descuento.'
+terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
+}
+
 //forma de pago con evento change
 
 formaPago.addEventListener('change', () => {
@@ -378,29 +400,7 @@ Swal.fire({
   
 });
 
-//genero cards con la info del array
-let servicios = [];
-for (const viaje of tramos) {
-    let divServ = document.createElement('div')
 
-    divServ.innerHTML = `<div class = "card">
-    <h4> ${viaje.from} - ${viaje.to} </h4>
-    <p> ${viaje.at} Hs</p>
-    <h5> $ ${viaje.price} /persona</h5> 
-    </div>`
-    divCard.append(divServ)
-}
-
-//en los parrafos existentes de terminos y condiciones agrego contenido
-let terminoClases = document.getElementsByClassName('terminos__texto')
-for (const termino of terminoClases) {
-
-
-
-terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.'
-terminoClases[1].innerText = 'Jubilados 15% de descuento.'
-terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
-}
 
 
 
