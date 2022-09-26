@@ -109,6 +109,9 @@ h2{
     margin: 2rem auto;
     padding: 0.5rem 0.5rem;
 }
+.swal2-title{
+    text-decoration: none;
+}
 .card__servicios{
     background-image: linear-gradient(to right, rgb(156, 19, 138), rgb(250, 129, 250));;
     padding: 2rem;
@@ -160,6 +163,9 @@ h5{
 h6,.terminos__texto{
     font-weight: bold;
     margin-left: 2rem;
+}
+.swa12-title{
+    text-decoration: none;
 }
 /*pago*/
 .pago{

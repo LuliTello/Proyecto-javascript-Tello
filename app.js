@@ -35,6 +35,7 @@ const comprar = document.querySelector('#comprar');
 const seccionPago = document.querySelector('#pago');
 const formaPago = document.querySelector('#formaPago');
 const formCuota = document.querySelector('.form-cuota');
+const divCuota = document.querySelector('.divCuotas');
 const formulario = document.querySelector('.formulario');
 const divCard = document.querySelector('.card__flex');
 
@@ -88,25 +89,23 @@ formularioIngreso.addEventListener('submit', (e) => {
            
            //mensaje libreria ingreso invalido
             Swal.fire({
+                position:'top',
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ingrese Usuario y contraseñas validas!',
-                /*footer: '<a href="">Why do I have this issue?</a>'*/
             })
-            /*document.querySelector('.validarIngreso').innerText = 'Ingrese Usuario y contraseñas validas'*/
         } else {
 
             //accedemos a los datos usuario para saludar al ingresar
 
             userAlmacenado = JSON.parse(localStorage.getItem('user'));
             //mensaje libreria ingreso valido
-            Swal.fire(
-                'Ingreso válido',
-                `${userAlmacenado} proceda a hacer su reserva`,
-                'success'
-            )
-            /*document.querySelector('.validarIngreso').innerText = `${userAlmacenado} ha ingresado correctamente, proceda a hacer su reserva`*/
-
+            Swal.fire({
+                position:'top',
+                title:'Ingreso válido',
+                text:`${userAlmacenado} proceda a hacer su reserva`,
+                icon:'success',
+        })
         }
     }
     ingresoUsuarioYContraseña();
@@ -129,10 +128,12 @@ function cambiarDark(){
         document.body.style.backgroundColor = 'black';
         document.body.style.color = 'grey';
     } else if(modoOscuro === true){
-        document.body.style.backgroundColor = 'white'
+        document.body.style.backgroundColor = 'white';
+        document.body.style.color = 'black';
     }
 }
 
+cambiarDark();
 // evento change para seleccionar origen
 selectOrigen.addEventListener('change', () => {
     from = selectOrigen.value
@@ -205,6 +206,8 @@ agregar.addEventListener('click', () => {
     for (const elemento of reservados) {
         //llamada a funcion agregar
         agregarReserva(elemento);
+        //clase para mostrar las reservas una vez agregadas al carrito
+        section.classList.remove('oculta');
     }
 })
 
@@ -221,6 +224,7 @@ function agregarReserva(elemento) {
     }
     //llamada a funcion mostrar
     mostrarReserva();
+
 }
 //funcion mostrar reserva en formato cards
 function mostrarReserva() {
@@ -268,9 +272,11 @@ comprar.addEventListener('click', () => {
     
     Swal.fire({
         title: 'Quiere seguir con la compra?',
+        color: 'rgb(156, 19, 138)',
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: 'Si, quiero',
+        confirmButtonColor: '#198754',
         denyButtonText: `No gracias`,
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
@@ -281,9 +287,7 @@ comprar.addEventListener('click', () => {
         }
       })
 
-    /*document.querySelector('.compra_span').innerHTML = `El total de su compra es de $ ${totalCompra} + IVA, finalice su compra y seleccione su forma de pago`;*/
-      
-    //clase que muestra l aseccion pago una vez hecha la compra
+    //clase que muestra la seccion pago una vez hecha la compra
     seccionPago.classList.remove('oculta');
 });
 
@@ -300,24 +304,23 @@ formaPago.addEventListener('change', () => {
 //funcion para seleccionar forma de pago
 const seleccionPago = () => {
     if (pagar === 'debito' || pagar === 'transferencia') {
-        formCuota.classList.add('oculta')
+        divCuota.classList.add('oculta')
         totalPagar = (totalCompra * 1.21) * 0.85;
-        /*document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`;*/
-        
+
         //mensaje libreria pago realizado con exito
         
         Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Realizó su pago con exito',
+            color: 'rgb(156, 19, 138)',
             text:`Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`,
             showConfirmButton: false,
             timer: 4500
         })
     } else {
-        formCuota.classList.remove('oculta')
+        divCuota.classList.remove('oculta')
         totalPagar = totalCompra * 1.21;
-        /*document.querySelector('#pagoSeleccionado').innerText = `Usted eligió la forma de pago ${pagar} su compra total es de ${totalPagar} Final, elija cantidad de cuotas a pagar`;*/
 
         //evento change para elegir cuotas
 
@@ -330,8 +333,8 @@ const seleccionPago = () => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Realizó su pago con exito',
-                text:`Usted eligió la forma de pago ${pagar} en cantidad de cuotas ${valorCuota}, monto de cuota a pagar ${parseInt(totalCuota)} Final`,
+                color: 'rgb(156, 19, 138)',
+                text:`Usted eligió la forma de pago ${pagar} en cantidad de cuotas, ${valorCuota}, monto de cuota a pagar ${parseInt(totalCuota)} Final`,
                 showConfirmButton: false,
                 timer: 5500
             })
@@ -346,13 +349,10 @@ const seleccionPago = () => {
 const seleccionCuotas = () => {
     if (valorCuota === 'una') {
         totalCuota = totalPagar / 1;
-        /*document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 1 cuota sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;*/
     } else if (valorCuota === 'tres') {
         totalCuota = (totalPagar * 1.25) / 3;
-        /*document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 3 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;*/
     } else {
         totalCuota = (totalPagar * 1.40) / 6;
-        /*document.querySelector('#cuotaSeleccionada').innerText = `Usted eligió 6 cuotas sin interes, el valor de su cuota es de $ ${parseInt(totalCuota)} Final`;*/
     }
 }
 //formulario de contacto
@@ -371,16 +371,11 @@ Swal.fire({
     position: 'bottom',
     icon: 'success',
     title: `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`,
+    color: 'rgb(156, 19, 138)',
     showConfirmButton: false,
     timer: 3000
   })
-
-    //mensaje de saludo una vez enviado el formulario con el nombre guardado en localStorage
-    /*const p = document.createElement('p');
-    p.innerText = `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`;
-    p.classList.add('saludo')
-    document.body.append(p);*/
-
+  
 });
 
 //genero cards con la info del array
