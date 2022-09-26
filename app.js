@@ -93,6 +93,7 @@ formularioIngreso.addEventListener('submit', (e) => {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ingrese Usuario y contraseñas validas!',
+                color: 'rgb(156, 19, 138)',
             })
         } else {
 
@@ -104,6 +105,7 @@ formularioIngreso.addEventListener('submit', (e) => {
                 position: 'top',
                 title: 'Ingreso válido',
                 text: `${userAlmacenado} proceda a hacer su reserva`,
+                color: 'rgb(156, 19, 138)',
                 icon: 'success',
             })
         }
@@ -336,7 +338,7 @@ const seleccionPago = () => {
             icon: 'success',
             title: 'Realizó su pago con exito',
             color: 'rgb(156, 19, 138)',
-            text: `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`,
+            text: `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de $ ${totalPagar} Final`,
             showConfirmButton: false,
             timer: 4500
         })
