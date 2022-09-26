@@ -1,4 +1,4 @@
-//Segunda entrega Proyecto final
+//Aplicacion de librerias
 
 //variables
 let from;
@@ -86,10 +86,10 @@ formularioIngreso.addEventListener('submit', (e) => {
     const ingresoUsuarioYContraseña = () => {
 
         if (nombreUsuario.value === '' || (!isNaN(nombreUsuario.value)) || contraseñaUsuario.value === '') {
-           
-           //mensaje libreria ingreso invalido
+
+            //mensaje libreria ingreso invalido
             Swal.fire({
-                position:'top',
+                position: 'top',
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ingrese Usuario y contraseñas validas!',
@@ -101,11 +101,11 @@ formularioIngreso.addEventListener('submit', (e) => {
             userAlmacenado = JSON.parse(localStorage.getItem('user'));
             //mensaje libreria ingreso valido
             Swal.fire({
-                position:'top',
-                title:'Ingreso válido',
-                text:`${userAlmacenado} proceda a hacer su reserva`,
-                icon:'success',
-        })
+                position: 'top',
+                title: 'Ingreso válido',
+                text: `${userAlmacenado} proceda a hacer su reserva`,
+                icon: 'success',
+            })
         }
     }
     ingresoUsuarioYContraseña();
@@ -114,7 +114,7 @@ formularioIngreso.addEventListener('submit', (e) => {
 //evento click cambio de modo
 let btnDarkMode = document.querySelector('.darkMode')
 let modoOscuro = JSON.parse(localStorage.getItem('modo')) || true;
-btnDarkMode.addEventListener('click',()=>{
+btnDarkMode.addEventListener('click', () => {
     console.log('click')
     modoOscuro = !modoOscuro;
     cambiarDark();
@@ -123,11 +123,11 @@ btnDarkMode.addEventListener('click',()=>{
 })
 
 //funcion para cambiar a darkmode
-function cambiarDark(){
-    if(modoOscuro === false){
+function cambiarDark() {
+    if (modoOscuro === false) {
         document.body.style.backgroundColor = 'black';
         document.body.style.color = 'grey';
-    } else if(modoOscuro === true){
+    } else if (modoOscuro === true) {
         document.body.style.backgroundColor = 'white';
         document.body.style.color = 'black';
     }
@@ -269,7 +269,7 @@ comprar.addEventListener('click', () => {
     }, 0);
 
     //mensaje libreria seguir con el pago
-    
+
     Swal.fire({
         title: 'Quiere seguir con la compra?',
         color: 'rgb(156, 19, 138)',
@@ -278,14 +278,14 @@ comprar.addEventListener('click', () => {
         confirmButtonText: 'Si, quiero',
         confirmButtonColor: '#198754',
         denyButtonText: `No gracias`,
-      }).then((result) => {
+    }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          Swal.fire('Excelente!', `Su total es de $ ${totalCompra} + IVA, finalice seleccionando forma de pago`, 'success')
+            Swal.fire('Excelente!', `Su total es de $ ${totalCompra} + IVA, finalice seleccionando forma de pago`, 'success')
         } else if (result.isDenied) {
-          Swal.fire('Compra cancelada', `${userAlmacenado} esperamos que pronto viaje con nosotros`, 'error')
+            Swal.fire('Compra cancelada', `${userAlmacenado} esperamos que pronto viaje con nosotros`, 'error')
         }
-      })
+    })
 
     //clase que muestra la seccion pago una vez hecha la compra
     seccionPago.classList.remove('oculta');
@@ -308,9 +308,9 @@ for (const viaje of tramos) {
 let terminoClases = document.getElementsByClassName('terminos__texto')
 for (const termino of terminoClases) {
 
-terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.'
-terminoClases[1].innerText = 'Jubilados 15% de descuento.'
-terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
+    terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.'
+    terminoClases[1].innerText = 'Jubilados 15% de descuento.'
+    terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
 }
 
 //forma de pago con evento change
@@ -330,13 +330,13 @@ const seleccionPago = () => {
         totalPagar = (totalCompra * 1.21) * 0.85;
 
         //mensaje libreria pago realizado con exito
-        
+
         Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Realizó su pago con exito',
             color: 'rgb(156, 19, 138)',
-            text:`Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`,
+            text: `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de ${totalPagar} Final`,
             showConfirmButton: false,
             timer: 4500
         })
@@ -356,7 +356,7 @@ const seleccionPago = () => {
                 position: 'center',
                 icon: 'success',
                 color: 'rgb(156, 19, 138)',
-                text:`Usted eligió la forma de pago ${pagar} en cantidad de cuotas, ${valorCuota}, monto de cuota a pagar ${parseInt(totalCuota)} Final`,
+                text: `Usted eligió la forma de pago ${pagar} en cantidad de cuotas, ${valorCuota}, monto de cuota a pagar ${parseInt(totalCuota)} Final`,
                 showConfirmButton: false,
                 timer: 5500
             })
@@ -388,16 +388,16 @@ formularioContacto.addEventListener('submit', (e) => {
 
     //acceder a la informacion
     let nombreAlmacenado = JSON.parse(localStorage.getItem('nombre'));
-//libreria sweet alert mensaje envio formulario
-Swal.fire({
-    position: 'bottom',
-    icon: 'success',
-    title: `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`,
-    color: 'rgb(156, 19, 138)',
-    showConfirmButton: false,
-    timer: 3000
-  })
-  
+    //libreria sweet alert mensaje envio formulario
+    Swal.fire({
+        position: 'bottom',
+        icon: 'success',
+        title: `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`,
+        color: 'rgb(156, 19, 138)',
+        showConfirmButton: false,
+        timer: 3000
+    })
+
 });
 
 
