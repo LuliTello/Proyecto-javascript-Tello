@@ -67,7 +67,7 @@ label{
     margin: 0.5rem 0;
 }
 
-.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-finalizar,.btn-borrar{
+.btn-comprar,.btn__ingresar,.btn-buscar,.btn-agregar,.btn-finalizar,.btn-borrar,.enviar__tarjeta{
     margin: 1rem auto; 
     padding: 0.5rem 2rem;
     background-color: rgb(250, 129, 250); 
@@ -197,7 +197,82 @@ h6,.terminos__texto{
 .form-pago,.divCuotas{
     margin: 1rem auto;
 }
+/*tarjeta*/
+.form-tarjeta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#numero,#nombre_tarjeta{
+    width: 20rem;
+}
+.mes{
+    width: 12rem;
+}
 
+.confirma_tarjeta{
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    margin: 2rem auto;
+    background-color: rgb(232, 162, 247);
+    border: 1px solid rgb(156, 19, 138);
+    padding: 0.3rem 0.1rem;
+    margin: 1rem;
+}
+.volver,.volverInicio{
+    text-decoration: none;
+    color: #000;
+    background-color: rgb(250, 129, 250);
+    border: 1px solid rgb(156, 19, 138);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    margin-left:25rem;
+}
+.volverInicio{
+    margin: 1rem auto;
+}
+/*Blog*/
+.blog{
+    margin: 2rem auto;
+    border: 2px solid rgb(114, 110, 110);
+    display: flex;
+    width: 35rem;
+}
+.card-image{
+    border: 2px solid rgb(156, 19, 138);
+    display: flex;
+    flex-direction: column;
+    
+}
+.img_blog{
+    width: 13rem;
+    height: 11rem;
+    
+}
+.card-content{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(232, 162, 247);
+}
+.title{
+    text-align: center;
+    border: 3px solid rgb(156, 19, 138);
+    font-weight: bolder;
+    font-style: italic;
+}
+.blogger{
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+.comment{
+    margin: 1rem auto;
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
 /*contacto*/
 .form__grid{
     display: grid;
@@ -308,6 +383,9 @@ textarea{
     }
     .footer{
         flex-direction: column;
+    }
+    .volver{
+        margin-left: 6rem;
     }
 }
 

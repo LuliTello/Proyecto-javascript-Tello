@@ -36,6 +36,9 @@ const seccionPago = document.querySelector('#pago');
 const formaPago = document.querySelector('#formaPago');
 const formCuota = document.querySelector('.form-cuota');
 const divCuota = document.querySelector('.divCuotas');
+const sectionTarjeta = document.querySelector('#tarjeta');
+const formularioTarjeta = document.querySelector('.form-tarjeta');
+const seccionMensajeTarjeta = document.querySelector('#container');
 const formulario = document.querySelector('.formulario');
 const divCard = document.querySelector('.card__flex');
 
@@ -55,7 +58,7 @@ const tramos = [
     { from: 'Cordoba', to: 'Santa Fe', at: '23:00', price: 2500 },
     { from: 'Santa Fe', to: 'Cordoba', at: '13:00', price: 2500 },
     { from: 'Santa Fe', to: 'Cordoba', at: '23:00', price: 2500 },
-]
+];
 
 //clase para crear objetos
 class destinoViaje {
@@ -104,7 +107,7 @@ formularioIngreso.addEventListener('submit', (e) => {
             Swal.fire({
                 position: 'top',
                 title: 'Ingreso válido',
-                text: `${userAlmacenado} proceda a hacer su reserva`,
+                text: `${userAlmacenado.toUpperCase()} proceda a hacer su reserva`,
                 color: 'rgb(156, 19, 138)',
                 icon: 'success',
             })
@@ -115,7 +118,7 @@ formularioIngreso.addEventListener('submit', (e) => {
 
 //evento click cambio de modo
 let btnDarkMode = document.querySelector('.darkMode')
-let modoOscuro = JSON.parse(localStorage.getItem('modo')) || true;
+let modoOscuro = JSON.parse(localStorage.getItem('modo')) ?? true;
 btnDarkMode.addEventListener('click', () => {
     console.log('click')
     modoOscuro = !modoOscuro;
@@ -228,6 +231,7 @@ function agregarReserva(elemento) {
     mostrarReserva();
 
 }
+
 //funcion mostrar reserva en formato cards
 function mostrarReserva() {
 
@@ -285,35 +289,36 @@ comprar.addEventListener('click', () => {
         if (result.isConfirmed) {
             Swal.fire('Excelente!', `Su total es de $ ${totalCompra} + IVA, finalice seleccionando forma de pago`, 'success')
         } else if (result.isDenied) {
-            Swal.fire('Compra cancelada', `${userAlmacenado} esperamos que pronto viaje con nosotros`, 'error')
+            Swal.fire('Compra cancelada', `${userAlmacenado.toUpperCase()} esperamos que pronto viaje con nosotros`, 'error')
         }
     })
 
     //clase que muestra la seccion pago una vez hecha la compra
     seccionPago.classList.remove('oculta');
 });
+    
+//uso de fetch para armar cards con informacion
 
-//genero cards con la info del array
-let servicios = [];
-for (const viaje of tramos) {
-    let divServ = document.createElement('div')
+async function fetchCard(){
+    const response = await fetch('./js/info.json');
+    const info = await response.json();
+    console.log(info);
 
-    divServ.innerHTML = `<div class = "card">
-    <h4> ${viaje.from} - ${viaje.to} </h4>
-    <p> ${viaje.at} Hs</p>
-    <h5> $ ${viaje.price} /persona</h5> 
-    </div>`
-    divCard.append(divServ)
+    for (const viaje of info){
+        let {from, to, at, price} = viaje
+
+        let divServ = document.createElement('div')
+        
+            divServ.innerHTML = `<div class = "card">
+            <h4> ${from} - ${to} </h4>
+            <p> ${at} Hs</p>
+            <h5> $ ${price} /persona</h5> 
+            </div>`
+            divCard.append(divServ)
+    }  
+
 }
-
-//en los parrafos existentes de terminos y condiciones agrego contenido
-let terminoClases = document.getElementsByClassName('terminos__texto')
-for (const termino of terminoClases) {
-
-    terminoClases[0].innerText = 'Los menores de 2 años no pagan pasaje y deben ir acompañados de 1 adulto.'
-    terminoClases[1].innerText = 'Jubilados 15% de descuento.'
-    terminoClases[2].innerText = 'La tarifa del pasaje incluye almuerzo o cena y un equipaje de mano.'
-}
+fetchCard()
 
 //forma de pago con evento change
 
@@ -329,6 +334,8 @@ formaPago.addEventListener('change', () => {
 const seleccionPago = () => {
     if (pagar === 'debito' || pagar === 'transferencia') {
         divCuota.classList.add('oculta')
+        sectionTarjeta.classList.remove('oculta')
+        seccionPago.classList.add('oculta')
         totalPagar = (totalCompra * 1.21) * 0.85;
 
         //mensaje libreria pago realizado con exito
@@ -336,14 +343,15 @@ const seleccionPago = () => {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Realizó su pago con exito',
+            title: `Eligió la forma de pago ${pagar}`,
             color: 'rgb(156, 19, 138)',
-            text: `Usted eligió la forma de pago ${pagar} con un descuento del 15%, su compra total es de $ ${totalPagar} Final`,
+            text: `Tiene un descuento del 15%, su compra total es de $ ${totalPagar} Final`,
             showConfirmButton: false,
-            timer: 4500
+            timer: 3500
         })
     } else {
         divCuota.classList.remove('oculta')
+        sectionTarjeta.classList.remove('oculta')
         totalPagar = totalCompra * 1.21;
 
         //evento change para elegir cuotas
@@ -358,14 +366,13 @@ const seleccionPago = () => {
                 position: 'center',
                 icon: 'success',
                 color: 'rgb(156, 19, 138)',
-                text: `Usted eligió la forma de pago ${pagar} en cantidad de cuotas, ${valorCuota}, monto de cuota a pagar ${parseInt(totalCuota)} Final`,
+                text: `Usted eligió la forma de pago ${pagar.toUpperCase()} en cantidad de cuotas, ${valorCuota}, monto de cuota a pagar $ ${parseInt(totalCuota)} Final`,
                 showConfirmButton: false,
-                timer: 5500
+                timer: 4500
             })
 
-            // borrar almacenamiento una vez hecha la compra 
-            localStorage.clear();
-
+            
+            seccionPago.classList.add('oculta')
         })
     }
 }
@@ -379,6 +386,62 @@ const seleccionCuotas = () => {
         totalCuota = (totalPagar * 1.40) / 6;
     }
 }
+
+//uso de fetch creando blog
+
+let contenedorBlog = document.querySelector('.contenedor')
+
+async function fetchBlog(){
+    const res = await fetch('./js/blog.json');
+    const data = await res.json();
+    console.log(data)
+    const encontrado = buscarBlog(data)
+    console.log(encontrado)
+    crearBlog(encontrado)
+  
+}
+fetchBlog()
+
+function crearBlog(arr){
+    let html = "";
+    contenedorBlog.innerHTML= "";
+    arr.forEach((el)=>{
+        const {img, alias, title, opinion} = el;
+        html = `<div class = "blog">
+        <div class="card-image">
+        <img class="img_blog" src='../assets/${img}'>
+        <span class="blogger"> ${alias} </span>
+        </div>
+        <div class="card-content">
+        <span class="title">${title}</span>
+        <p class="comment"> "${opinion}"</p>
+        </div>
+        </div>`
+        contenedorBlog.innerHTML += html;
+    }
+)}
+
+function buscarBlog(arr){
+    let encontrado = arr.find(el=>{
+        return el.id === Math.random()*10
+    })
+    return encontrado;
+    
+}
+//tarjeta
+
+formularioTarjeta.addEventListener('submit', (e) =>{
+
+    e.preventDefault();
+    
+    sectionTarjeta.classList.add('oculta')
+    seccionMensajeTarjeta.classList.remove('oculta')
+    document.querySelector('.confirma_tarjeta').innerText='Pago realizado con exito!, si quiere recibir nuestras promociones complete el formulario';
+
+    // borrar almacenamiento una vez hecha la compra 
+    localStorage.clear();
+})
+
 //formulario de contacto
 
 formularioContacto.addEventListener('submit', (e) => {
@@ -394,7 +457,7 @@ formularioContacto.addEventListener('submit', (e) => {
     Swal.fire({
         position: 'bottom',
         icon: 'success',
-        title: `${nombreAlmacenado} Muchas gracias por elegirnos, que tenga un excelente viaje!`,
+        title: `${nombreAlmacenado.toUpperCase()} Muchas gracias por elegirnos, que tenga un excelente viaje!`,
         color: 'rgb(156, 19, 138)',
         showConfirmButton: false,
         timer: 3000

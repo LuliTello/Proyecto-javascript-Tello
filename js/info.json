@@ -1,0 +1,74 @@
+[
+    {
+       "from":"Buenos Aires",
+       "to":"Cordoba",
+       "at":"13:00",
+       "price":3500
+    },
+    {
+       "from":"Buenos Aires",
+       "to":"Cordoba",
+       "at":"23:00",
+       "price":3500
+    },
+    {
+       "from":"Cordoba",
+       "to":"Buenos Aires",
+       "at":"13:00",
+       "price":3500
+    },
+    {
+       "from":"Cordoba",
+       "to":"Buenos Aires",
+       "at":"23:00",
+       "price":3500
+    },
+    {
+       "from":"Buenos Aires",
+       "to":"Santa Fe",
+       "at":"13:00",
+       "price":2750
+    },
+    {
+       "from":"Buenos Aires",
+       "to":"Santa Fe",
+       "at":"23:00",
+       "price":2750
+    },
+    {
+       "from":"Santa Fe",
+       "to":"Buenos Aires",
+       "at":"13:00",
+       "price":2750
+    },
+    {
+       "from":"Santa Fe",
+       "to":"Buenos Aires",
+       "at":"23:00",
+       "price":2750
+    },
+    {
+       "from":"Cordoba",
+       "to":"Santa Fe",
+       "at":"13:00",
+       "price":2500
+    },
+    {
+       "from":"Cordoba",
+       "to":"Santa Fe",
+       "at":"23:00",
+       "price":2500
+    },
+    {
+       "from":"Santa Fe",
+       "to":"Cordoba",
+       "at":"13:00",
+       "price":2500
+    },
+    {
+       "from":"Santa Fe",
+       "to":"Cordoba",
+       "at":"23:00",
+       "price":2500
+    }
+ ]
