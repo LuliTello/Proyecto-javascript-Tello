@@ -387,47 +387,6 @@ const seleccionCuotas = () => {
     }
 }
 
-//uso de fetch creando blog
-
-let contenedorBlog = document.querySelector('.contenedor')
-
-async function fetchBlog(){
-    const res = await fetch('./js/blog.json');
-    const data = await res.json();
-    console.log(data)
-    const encontrado = buscarBlog(data)
-    console.log(encontrado)
-    crearBlog(encontrado)
-  
-}
-fetchBlog()
-
-function crearBlog(arr){
-    let html = "";
-    contenedorBlog.innerHTML= "";
-    arr.forEach((el)=>{
-        const {img, alias, title, opinion} = el;
-        html = `<div class = "blog">
-        <div class="card-image">
-        <img class="img_blog" src='../assets/${img}'>
-        <span class="blogger"> ${alias} </span>
-        </div>
-        <div class="card-content">
-        <span class="title">${title}</span>
-        <p class="comment"> "${opinion}"</p>
-        </div>
-        </div>`
-        contenedorBlog.innerHTML += html;
-    }
-)}
-
-function buscarBlog(arr){
-    let encontrado = arr.find(el=>{
-        return el.id === Math.random()*10
-    })
-    return encontrado;
-    
-}
 //tarjeta
 
 formularioTarjeta.addEventListener('submit', (e) =>{
