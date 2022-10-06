@@ -192,13 +192,13 @@
             <h2>Datos de Tarjeta</h2>
             <form class="form-tarjeta" action="">
                 <label for="" class="tarjeta__numero">Numero De Tarjeta</label>
-                <input type="number" name="numero" id="numero">
+                <input name="numero" id="numero" type="number" required>
                 <label for="" class="tarjeta__nombre">Nombre como figura en la tarjeta</label>
-                <input type="text" name="nombre_tarjeta" id="nombre_tarjeta">
+                <input  name="nombre_tarjeta" id="nombre_tarjeta" type="text" required>
                 <label for="" class="tarjeta__vencimiento">Vencimiento</label>
                 <input type="month" name="month" class="mes" min="2022-09">
                 <label for="" class="tarjeta__codigo">CVC</label>
-                <input type="number" name="numero__cvc" id="numero__cvc">
+                <input  name="numero__cvc" id="numero__cvc" type="number" required>
                 <button  type="submit" class="enviar__tarjeta">Pagar</button>
                 
             </form>
@@ -218,17 +218,17 @@
                 <div class="form__grid">
                     <div>
                         <label for="nombre">Nombre y Apellido:</label>
-                        <input class="form__grid--input" type="text" id="nombre" name="nombre"
-                            placeholder="Nombre y apellido">
+                        <input class="form__grid--input" id="nombre" name="nombre"
+                            placeholder="Nombre y apellido" type="text" required />
                     </div>
                     <div>
                         <label for="email">Email:</label>
-                        <input class="form__grid--input" type="email" name="email" id="email" placeholder="Email">
+                        <input class="form__grid--input" name="email" id="email" placeholder="Email" type="email" required />
                     </div>
                     <div>
                         <label for="telefono">Teléfono:</label>
-                        <input class="form__grid--input" type="number" name="telefono" id="telefono"
-                            placeholder="Telefono">
+                        <input class="form__grid--input" name="telefono" id="telefono"
+                            placeholder="Telefono" type="number" required />
                     </div>
                     <div>
                         <label for="consulta">Deje su consulta o reclamo</label>

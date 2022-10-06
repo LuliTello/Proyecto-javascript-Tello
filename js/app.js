@@ -1,4 +1,4 @@
-//Aplicacion de librerias
+//Proyecto final
 
 //variables
 let from;
@@ -387,7 +387,7 @@ const seleccionCuotas = () => {
     }
 }
 
-//tarjeta
+//formulario con tarjeta evento submit
 
 formularioTarjeta.addEventListener('submit', (e) =>{
 
