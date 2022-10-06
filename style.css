@@ -346,6 +346,11 @@ textarea{
     }
 }
 @media(max-width:480px){
+    .darkMode{
+        position: relative;
+        left: 14rem;
+        top: 1rem;
+    }
     .inicio__titulo{
         font-size: 1.5rem;
         left: 10rem;
@@ -376,10 +381,18 @@ textarea{
     .btn-comprar,.btn__ingresar,.btn-finalizar{
         display: block;
     }
+    h3{
+        text-align: center;
+        margin: 1rem auto;
+    }
     .card__flex{
         flex-direction: column;
         gap: 1.5rem;
         align-items: center;
+    }
+    .card{
+        width: 100%;
+        margin: 1rem auto;
     }
     .footer{
         flex-direction: column;

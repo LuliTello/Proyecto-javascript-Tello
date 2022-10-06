@@ -396,6 +396,8 @@ formularioTarjeta.addEventListener('submit', (e) =>{
     
     sectionTarjeta.classList.add('oculta')
     seccionMensajeTarjeta.classList.remove('oculta')
+    
+    
     document.querySelector('.confirma_tarjeta').innerText='Pago realizado con exito!, si quiere recibir nuestras promociones complete el formulario';
 
     // borrar almacenamiento una vez hecha la compra 
