@@ -422,7 +422,7 @@ formularioContacto.addEventListener('submit', (e) => {
         showConfirmButton: false,
         timer: 3000
     })
-
+    localStorage.removeItem('nombre');
 });
 
 
