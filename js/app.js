@@ -217,6 +217,7 @@ agregar.addEventListener('click', () => {
 })
 
 //funcion para agregar reserva al arreglo
+const btnComprar = document.querySelector('.btns_comprar')
 function agregarReserva(elemento) {
     let existe = reservas.some(elem => elem.from === elemento.from && elem.to === elemento.to);
     if (existe === false) {
@@ -229,7 +230,7 @@ function agregarReserva(elemento) {
     }
     //llamada a funcion mostrar
     mostrarReserva();
-
+    btnComprar.classList.remove('oculta')
 }
 
 //funcion mostrar reserva en formato cards
