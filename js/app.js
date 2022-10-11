@@ -12,6 +12,7 @@ let totalCompra;
 let pagar;
 let totalPagar;
 let valorCuota;
+let btnDarkMode = document.querySelector('.darkMode')
 
 //constantes
 const formularioIngreso = document.querySelector('#form-ingreso')
@@ -117,7 +118,7 @@ formularioIngreso.addEventListener('submit', (e) => {
 })
 
 //evento click cambio de modo
-let btnDarkMode = document.querySelector('.darkMode')
+
 let modoOscuro = JSON.parse(localStorage.getItem('modo')) ?? true;
 btnDarkMode.addEventListener('click', () => {
     console.log('click')
