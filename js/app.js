@@ -297,26 +297,26 @@ comprar.addEventListener('click', () => {
     //clase que muestra la seccion pago una vez hecha la compra
     seccionPago.classList.remove('oculta');
 });
-    
+
 //uso de fetch para armar cards con informacion
 
-async function fetchCard(){
+async function fetchCard() {
     const response = await fetch('./js/info.json');
     const info = await response.json();
     console.log(info);
 
-    for (const viaje of info){
-        let {from, to, at, price} = viaje
+    for (const viaje of info) {
+        let { from, to, at, price } = viaje
 
         let divServ = document.createElement('div')
-        
-            divServ.innerHTML = `<div class = "card">
+
+        divServ.innerHTML = `<div class = "card">
             <h4> ${from} - ${to} </h4>
             <p> ${at} Hs</p>
             <h5> $ ${price} /persona</h5> 
             </div>`
-            divCard.append(divServ)
-    }  
+        divCard.append(divServ)
+    }
 
 }
 fetchCard()
@@ -372,7 +372,7 @@ const seleccionPago = () => {
                 timer: 4500
             })
 
-            
+
             seccionPago.classList.add('oculta')
         })
     }
@@ -390,15 +390,15 @@ const seleccionCuotas = () => {
 
 //formulario con tarjeta evento submit
 
-formularioTarjeta.addEventListener('submit', (e) =>{
+formularioTarjeta.addEventListener('submit', (e) => {
 
     e.preventDefault();
-    
+
     sectionTarjeta.classList.add('oculta')
     seccionMensajeTarjeta.classList.remove('oculta')
-    
-    
-    document.querySelector('.confirma_tarjeta').innerText='Pago realizado con exito!, si quiere recibir nuestras promociones complete el formulario';
+
+
+    document.querySelector('.confirma_tarjeta').innerText = 'Pago realizado con exito!, si quiere recibir nuestras promociones complete el formulario';
 
     // borrar almacenamiento una vez hecha la compra 
     localStorage.clear();
